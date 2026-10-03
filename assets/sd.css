@@ -35,6 +35,9 @@ p{margin:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
+/* ── Demo bar ── */
+.sd-demo-bar{background:var(--ink);color:var(--on-dark);font:500 12.5px/1.4 var(--sans);letter-spacing:.02em;text-align:center;padding:6px var(--gut)}
+
 /* ── Header ── */
 .sd-head{position:sticky;top:0;z-index:40;background:rgba(252,249,242,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--beige)}
 .sd-head .wrap{display:flex;align-items:center;gap:18px;height:66px}
