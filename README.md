@@ -17,6 +17,7 @@ assets/data.js    clinic data: address, hours, team, price list (single source o
 assets/sd.css     design system (SoftDent colours and typography)
 assets/sd.js      i18n (PL/EN), header/footer, API helper, price formatting
 assets/config.js  AI endpoint base URL — empty = built-in demo mode
+assets/fonts/     self-hosted Cormorant Garamond + Inter (woff2, latin + latin-ext, SIL OFL 1.1)
 ```
 
 ## Modes
