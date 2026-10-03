@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="sd-title" content="doc_title">
+<title>Asystent · SoftDent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2716%27 fill=%27%23292A24%27/%3E%3Cpath d=%27M10 9c2-1 4 0 6 0s4-1 6 0c2 1 2 5 1 8-1 2-1 6-3 6s-2-5-4-5-2 5-4 5-2-4-3-6c-1-3-1-7 1-8z%27 fill=%27%23B39A68%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/sd.css">
+<style>
+.hero h1{max-width:14ch}
+.phone-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.big-tel{font:500 clamp(26px,4vw,34px)/1 var(--serif);color:var(--on-dark);text-decoration:none;display:inline-flex;align-items:center;gap:12px;padding:12px 4px}
+.big-tel svg{width:24px;height:24px;color:var(--gold-lt)}
+.now{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:14.5px;color:var(--on-dark-2)}
+.now b{color:var(--on-dark)}
+.pulse{width:9px;height:9px;border-radius:50%;background:#5FBF85;animation:pulse 1.8s infinite}
+.pulse.shut{background:#C9705F;animation:none}
+.head{margin:56px 0 20px}
+.head p{color:var(--ink-2);margin-top:8px;max-width:62ch}
+.place{display:grid;grid-template-columns:1fr 1.15fr;gap:16px}
+.place-info{background:var(--white);border:1px solid var(--beige);border-radius:var(--r-lg);padding:6px 24px}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--beige)}
+.kv:last-child{border-bottom:0}
+.kv dt{font:600 11.5px/1.5 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.kv dd{margin:0}
+.hours{display:flex;justify-content:space-between;gap:12px}
+.hours.off{color:var(--ink-3)}
+.map{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--beige);min-height:340px;background:var(--sand)}
+.map iframe{width:100%;height:100%;min-height:340px;border:0;display:block}
+@media (max-width:780px){.place{grid-template-columns:1fr}.kv{grid-template-columns:1fr;gap:4px}}
+.chat{background:var(--white);border:1px solid var(--beige);border-radius:var(--r-lg);box-shadow:var(--sh-lift);overflow:hidden}
+.chat-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;background:var(--ink);color:var(--on-dark)}
+.chat-id{display:flex;align-items:center;gap:12px}
+.chat-av{width:42px;height:42px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center}
+.chat-av svg{width:22px;height:22px}
+.chat-nm{font-weight:600}
+.chat-st{font-size:12.5px;color:var(--on-dark-2);display:inline-flex;align-items:center;gap:6px}
+.chat-st i{width:7px;height:7px;border-radius:50%;background:#5FBF85}
+.chat-body{height:430px;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;background:var(--cream)}
+.msg{display:flex;flex-direction:column;max-width:86%}
+.msg.me{align-self:flex-end;align-items:flex-end}
+.bub{padding:12px 16px;border-radius:16px;font-size:15px;line-height:1.55;word-wrap:break-word}
+.msg.ai .bub{background:var(--white);border:1px solid var(--beige);border-bottom-left-radius:4px}
+.msg.me .bub{background:var(--ink);color:var(--cream);border-bottom-right-radius:4px}
+.bub a{word-break:break-all}
+.stamp{font-size:11.5px;color:var(--ink-3);margin-top:4px;padding:0 4px}
+.hint-list{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.hint-list button{border:1px solid var(--gold-lt);background:var(--gold-wash);color:var(--gold-dk);border-radius:999px;padding:7px 13px;font-size:13.5px;font-weight:600;cursor:pointer}
+.hint-list button:hover{background:var(--gold-lt);color:var(--ink)}
+.dots{display:flex;gap:5px;padding:14px 16px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--taupe);animation:bounce 1.2s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+.chat-foot{padding:14px;border-top:1px solid var(--beige);background:var(--white)}
+.composer{display:flex;gap:10px;align-items:flex-end}
+.composer textarea{flex:1;resize:none;border:1px solid var(--beige);border-radius:var(--r-md);padding:12px 14px;font:inherit;font-size:16px;background:var(--cream);max-height:110px;color:var(--ink)}
+.composer textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(179,154,104,.2)}
+.send{width:48px;height:48px;border-radius:50%;border:0;background:var(--green);color:#fff;cursor:pointer;display:grid;place-items:center;flex-shrink:0}
+.send:disabled{background:var(--taupe);cursor:not-allowed}
+.send svg{width:20px;height:20px}
+.spin{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tmr{font-size:13px;font-weight:700}
+.q{background:var(--white);border:1px solid var(--beige);border-radius:var(--r-md);margin-bottom:8px}
+.q summary{cursor:pointer;padding:16px 20px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.q summary::-webkit-details-marker{display:none}
+.q summary::after{content:"+";font:400 24px/1 var(--serif);color:var(--gold-dk)}
+.q[open] summary::after{content:"–"}
+.q .ans{padding:0 20px 18px;color:var(--ink-2)}
+.q.urgent{border-left:3px solid var(--bad)}
+</style>
+</head>
+<body data-base="../" data-page="chat">
+<header id="sd-head"></header>
+
+<main class="page wrap">
+  <div class="restart-row"><span data-mode></span><span></span></div>
+
+  <div class="dark hero rise">
+    <span class="eyebrow"><span class="dot"></span><span id="district"></span></span>
+    <h1 style="margin-top:16px" data-i="h1"></h1>
+    <p class="lede" data-i="lede"></p>
+    <div class="phone-row">
+      <a class="big-tel" id="big-tel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span></span></a>
+      <a class="btn" id="book-top" target="_blank" rel="noopener" data-i="book"></a>
+      <a class="btn btn-line" href="#chat" data-i="ask"></a>
+    </div>
+    <p class="now"><span class="pulse" id="st-dot"></span><span id="st-txt"></span></p>
+  </div>
+
+  <!-- Chat -->
+  <section id="chat">
+    <div class="head">
+      <span class="eyebrow" data-i="chat_l"></span>
+      <h2 style="margin-top:10px" data-i="chat_h"></h2>
+      <p data-i="chat_p"></p>
+    </div>
+    <div class="chat">
+      <div class="chat-top">
+        <div class="chat-id">
+          <span class="chat-av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M9 14h.01M15 14h.01"/><path d="M2 13v2M22 13v2"/></svg></span>
+          <span><span class="chat-nm" data-i="bot_nm"></span><br><span class="chat-st"><i></i><span data-i="bot_st"></span></span></span>
+        </div>
+      </div>
+      <div class="chat-body" id="chat-body" aria-live="polite"></div>
+      <div class="chat-foot">
+        <form class="composer" id="chat-form">
+          <textarea id="chat-in" rows="1" data-iph="ph" data-ial="ph"></textarea>
+          <button class="send" id="chat-btn" type="submit" data-ial="send">
+            <span class="b-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></span>
+            <span class="b-spin hide"><svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9" opacity=".25"/><path d="M21 12a9 9 0 0 0-9-9" stroke-linecap="round"/></svg></span>
+            <span class="b-tmr tmr hide"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Address -->
+  <section>
+    <div class="head">
+      <span class="eyebrow" data-i="find_l"></span>
+      <h2 style="margin-top:10px" id="street"></h2>
+      <p data-i="find_p"></p>
+    </div>
+    <div class="place">
+      <div class="place-info"><dl style="margin:0">
+        <div class="kv"><dt data-i="k_addr"></dt><dd id="addr"></dd></div>
+        <div class="kv"><dt data-i="k_phone"></dt><dd id="phones"></dd></div>
+        <div class="kv"><dt>E-mail</dt><dd id="mail"></dd></div>
+        <div class="kv"><dt data-i="k_hours"></dt><dd id="hours"></dd></div>
+      </dl></div>
+      <div class="map"><iframe id="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa"></iframe></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="head">
+      <span class="eyebrow" data-i="faq_l"></span>
+      <h2 style="margin-top:10px" data-i="faq_h"></h2>
+    </div>
+    <div id="faq"></div>
+  </section>
+</main>
+
+<footer id="sd-foot"></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/config.js"></script>
+<script src="../assets/sd.js"></script>
+<script>
+(function () {
+  'use strict';
+  var C = SD.clinic;
+  SDI.add({
+    pl: {
+      doc_title: 'Kontakt i asystent AI · SoftDent',
+      h1: 'Skontaktuj się z nami', lede: 'Najszybciej — telefonicznie lub przez rezerwację online. Na pytania o ceny, lekarzy i godziny od razu odpowie asystent AI.',
+      book: 'Rezerwacja online', ask: 'Zapytaj asystenta',
+      open_now: '<b>Teraz otwarte</b> · do ', closed_now: '<b>Teraz zamknięte</b> · zapraszamy ', closed_sun: '<b>Dziś nieczynne</b> · zapraszamy w poniedziałek od 8:00', tomorrow: 'jutro od ', today_from: 'dziś od ',
+      chat_l: 'Całą dobę', chat_h: 'Zapytaj asystenta', chat_p: 'Ceny, lekarze, godziny, przygotowanie do wizyty — odpowiedź od razu, bez czekania na linii.',
+      bot_nm: 'Asystent SoftDent', bot_st: 'Odpowiada natychmiast', ph: 'Napisz swoje pytanie…', send: 'Wyślij',
+      hello: '<b>Dzień dobry!</b><br>Pomogę z cenami, lekarzami i terminami. Wybierz pytanie albo napisz własne.',
+      q1: 'Ile kosztuje implant?', q2: 'Cena aparatu ortodontycznego?', q3: 'Czy przyjmujecie dzieci?', q4: 'Chcę umówić wizytę',
+      me: 'Ty', bot: 'Asystent', wait: '⏳ Proszę poczekać jeszcze ', sec: ' s.',
+      e_net: '⚠️ Przepraszamy, błąd techniczny. Zadzwoń do nas: ', e_slow: '⚠️ Przekroczono czas oczekiwania.', e_none: 'Nie zrozumiałem pytania.',
+      find_l: 'Jak do nas trafić', find_p: 'Warszawa, Ochota (Szczęśliwice).',
+      k_addr: 'Adres', k_phone: 'Telefon', k_hours: 'Godziny', route: 'Wyznacz trasę →', closed: 'nieczynne',
+      faq_l: 'Częste pytania', faq_h: 'Odpowiedzi na najczęstsze pytania'
+    },
+    en: {
+      doc_title: 'Contact & AI assistant · SoftDent',
+      h1: 'Get in touch', lede: 'Fastest by phone or online booking. The AI assistant answers questions about prices, doctors and hours instantly.',
+      book: 'Book online', ask: 'Ask the assistant',
+      open_now: '<b>Open now</b> · until ', closed_now: '<b>Closed now</b> · we open ', closed_sun: '<b>Closed today</b> · we open Monday at 8:00', tomorrow: 'tomorrow at ', today_from: 'today at ',
+      chat_l: '24/7', chat_h: 'Ask the assistant', chat_p: 'Prices, doctors, hours, visit preparation — instant answers, no waiting on the line.',
+      bot_nm: 'SoftDent assistant', bot_st: 'Replies instantly', ph: 'Type your question…', send: 'Send',
+      hello: '<b>Hello!</b><br>I can help with prices, doctors and appointments. Pick a question or type your own.',
+      q1: 'How much is an implant?', q2: 'Price of braces?', q3: 'Do you treat children?', q4: 'I want to book a visit',
+      me: 'You', bot: 'Assistant', wait: '⏳ Please wait another ', sec: ' s.',
+      e_net: '⚠️ Sorry, technical error. Please call us: ', e_slow: '⚠️ The request timed out.', e_none: 'I did not understand the question.',
+      find_l: 'How to find us', find_p: 'Warsaw, Ochota district (Szczęśliwice).',
+      k_addr: 'Address', k_phone: 'Phone', k_hours: 'Hours', route: 'Get directions →', closed: 'closed',
+      faq_l: 'FAQ', faq_h: 'Answers to common questions'
+    }
+  });
+  SDI.start();
+
+  var $ = function (id) { return document.getElementById(id); };
+  var t = SDI.t, L = SDI.L;
+  var price = function (k, i) { return SDI.priceOf(SD.prices.filter(function (c) { return c.k === k; })[0].o[i]); };
+
+  /* ── Static clinic info ── */
+  function info() {
+    $('district').textContent = L(C.district);
+    $('big-tel').href = C.phoneHref; $('big-tel').querySelector('span').textContent = C.phone;
+    $('book-top').href = C.booking;
+    $('street').textContent = C.street;
+    $('addr').innerHTML = C.street + '<br>' + C.city + '<br><a href="' + C.map + '" target="_blank" rel="noopener" style="font-size:14.5px">' + t('route') + '</a>';
+    $('phones').innerHTML = '<a href="' + C.phoneHref + '">' + C.phone + '</a><br><a href="' + C.phone2Href + '">' + C.phone2 + '</a>';
+    $('mail').innerHTML = '<a href="mailto:' + C.email + '">' + C.email + '</a>';
+    $('hours').innerHTML = C.hours.map(function (h) { return '<div class="hours' + (h.h ? '' : ' off') + '"><span>' + L(h.d) + '</span><span>' + (h.h || t('closed')) + '</span></div>'; }).join('');
+    if (!$('map').src) $('map').src = C.mapEmbed;
+    status(); faq();
+  }
+
+  /* Open / closed — clinic time (Europe/Warsaw) */
+  function status() {
+    var p = {}; new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Warsaw', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' })
+      .formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+    var day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.weekday), h = +p.hour + (+p.minute) / 60;
+    var rule = function (d) { return C.hours.filter(function (x) { return x.days.indexOf(d) > -1; })[0]; };
+    var r = rule(day), dot = $('st-dot'), txt = $('st-txt');
+    dot.classList.remove('shut');
+    if (r.h && h >= r.open && h < r.close) { txt.innerHTML = t('open_now') + r.close + ':00'; return; }
+    dot.classList.add('shut');
+    if (r.h && h < r.open) { txt.innerHTML = t('closed_now') + t('today_from') + r.open + ':00'; return; }
+    var nx = rule((day + 1) % 7);
+    txt.innerHTML = nx.h ? t('closed_now') + t('tomorrow') + nx.open + ':00' : t('closed_sun');
+  }
+
+  /* FAQ — only facts published by the clinic */
+  function faq() {
+    var pl = SDI.lang === 'pl';
+    var tel = '<a href="' + C.phoneHref + '">' + C.phone + '</a>';
+    var Q = pl ? [
+      ['urgent', 'Co zrobić przy ostrym bólu zęba?', 'Nie zwlekaj — zadzwoń: ' + tel + '. Postaramy się znaleźć najbliższy wolny termin.'],
+      ['', 'Jak umówić wizytę?', 'Telefonicznie (' + tel + ' lub ' + C.phone2 + '), przez <a href="' + C.booking + '" target="_blank" rel="noopener">formularz rezerwacji online</a> albo pytając asystenta powyżej.'],
+      ['', 'W jakich godzinach pracujecie?', 'Poniedziałek–piątek 8:00–20:00, sobota 9:00–20:00. Niedziela nieczynne.'],
+      ['', 'Czy przyjmujecie dzieci?', 'Tak. Pierwsza wizyta może być wizytą adaptacyjną (' + price('kids', 0) + ') — dziecko poznaje gabinet bez zabiegów.'],
+      ['', 'Jaką diagnostykę wykonujecie na miejscu?', 'RTG punktowe przy fotelu, pantomogram, cefalometrię i tomografię CBCT. Mamy też skaner wewnątrzustny.'],
+      ['', 'Jak wygląda leczenie kanałowe?', 'Pod mikroskopem Zeiss Pico, w koferdamie, z maszynowym opracowaniem kanałów i wypełnieniem gutaperką na ciepło. Cena ' + price('endo', 0) + ' (1 kanał).'],
+      ['', 'Ile kosztuje higienizacja?', 'Pakiet higienizacyjny (skaling, piaskowanie, polerowanie, fluoryzacja) — ' + price('hyg', 0) + '. Pakiet GBT — ' + price('hyg', 1) + '.'],
+      ['', 'Ile kosztuje implant?', 'Implant ' + price('surg', 8) + ' w zależności od systemu; korona porcelanowa na implancie ' + price('surg', 9) + '. Dokładny plan lekarz ustala po badaniu i CBCT.']
+    ] : [
+      ['urgent', 'What should I do with acute tooth pain?', 'Don\'t wait — call ' + tel + '. We will try to find the earliest available slot.'],
+      ['', 'How do I book a visit?', 'By phone (' + tel + ' or ' + C.phone2 + '), via the <a href="' + C.booking + '" target="_blank" rel="noopener">online booking form</a>, or by asking the assistant above.'],
+      ['', 'What are your opening hours?', 'Monday–Friday 8:00–20:00, Saturday 9:00–20:00. Closed on Sunday.'],
+      ['', 'Do you treat children?', 'Yes. The first visit can be an adaptation visit (' + price('kids', 0) + ') — the child gets to know the clinic without any procedures.'],
+      ['', 'What diagnostics do you have on site?', 'Chair-side X-ray, panoramic and cephalometric X-ray and CBCT 3D imaging, plus an intraoral scanner.'],
+      ['', 'How is root canal treatment done?', 'Under a Zeiss Pico microscope with rubber dam, rotary instrumentation and warm gutta-percha obturation. Price ' + price('endo', 0) + ' (1 canal).'],
+      ['', 'How much is a hygiene visit?', 'Hygiene package (scaling, air-polishing, polishing, fluoride) — ' + price('hyg', 0) + '. GBT package — ' + price('hyg', 1) + '.'],
+      ['', 'How much is an implant?', 'Implant ' + price('surg', 8) + ' depending on the system; PFM crown on an implant ' + price('surg', 9) + '. The exact plan is set after an examination and CBCT.']
+    ];
+    $('faq').innerHTML = Q.map(function (q) { return '<details class="q ' + q[0] + '"><summary>' + q[1] + '</summary><div class="ans">' + q[2] + '</div></details>'; }).join('');
+  }
+
+  /* ── Chat ── */
+  var body = $('chat-body'), input = $('chat-in'), btn = $('chat-btn');
+  var COOL = 4000, lastAt = 0, sid;
+  try { sid = sessionStorage.getItem('sd_chat') || ''; } catch (e) { sid = ''; }
+  if (!sid) { sid = 'web-' + Math.random().toString(36).slice(2, 10); try { sessionStorage.setItem('sd_chat', sid); } catch (e) {} }
+
+  function greet() {
+    body.innerHTML = '';
+    var w = document.createElement('div'); w.className = 'msg ai';
+    w.innerHTML = '<div class="bub">' + t('hello') + '<ul class="hint-list">'
+      + ['q1', 'q2', 'q3', 'q4'].map(function (k) { return '<li><button type="button" data-ask="' + t(k) + '">' + t(k) + '</button></li>'; }).join('')
+      + '</ul></div><span class="stamp">' + t('bot') + '</span>';
+    body.appendChild(w);
+  }
+  input.addEventListener('input', function () { this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 110) + 'px'; });
+  input.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); if (!btn.disabled) send(); } });
+  $('chat-form').addEventListener('submit', function (e) { e.preventDefault(); send(); });
+  body.addEventListener('click', function (e) { var b = e.target.closest('[data-ask]'); if (!b || btn.disabled) return; input.value = b.getAttribute('data-ask'); send(); });
+
+  async function send() {
+    var text = input.value.trim(); if (!text) return;
+    var since = Date.now() - lastAt;
+    if (since < COOL) { add('ai', t('wait') + Math.ceil((COOL - since) / 1000) + t('sec')); return; }
+    lastAt = Date.now();
+    add('me', text); input.value = ''; input.style.height = 'auto';
+    typing(true);
+    try {
+      var answer;
+      if (SDI.live()) {
+        var d = await SDI.api('sd-asystent', { question: text.slice(0, 800), language: SDI.lang, sessionId: sid }, 30000);
+        answer = d.answer || d.output || d.text;
+      } else {
+        await new Promise(function (r) { setTimeout(r, 900); });
+        answer = demoAnswer(text);
+      }
+      add('ai', answer || t('e_none'));
+    } catch (err) {
+      console.error(err);
+      add('ai', err.name === 'AbortError' ? t('e_slow') : t('e_net') + C.phone);
+    } finally { typing(false); cooldown(); }
+  }
+  function cooldown() {
+    var ic = btn.querySelector('.b-ico'), tm = btn.querySelector('.b-tmr'), left = COOL / 1000;
+    btn.disabled = true; ic.classList.add('hide'); tm.classList.remove('hide'); tm.textContent = left + 's';
+    var iv = setInterval(function () {
+      left--;
+      if (left <= 0) { clearInterval(iv); btn.disabled = false; tm.classList.add('hide'); ic.classList.remove('hide'); }
+      else tm.textContent = left + 's';
+    }, 1000);
+  }
+  function typing(on) {
+    var ic = btn.querySelector('.b-ico'), sp = btn.querySelector('.b-spin');
+    if (on) {
+      btn.disabled = true; ic.classList.add('hide'); sp.classList.remove('hide');
+      var w = document.createElement('div'); w.id = 'typing'; w.className = 'msg ai';
+      w.innerHTML = '<div class="bub" style="padding:0"><div class="dots"><i></i><i></i><i></i></div></div>';
+      body.appendChild(w); down();
+    } else { sp.classList.add('hide'); var el = $('typing'); if (el) el.remove(); }
+  }
+  function add(role, text) {
+    var w = document.createElement('div'); w.className = 'msg ' + (role === 'me' ? 'me' : 'ai');
+    var b = document.createElement('div'); b.className = 'bub'; b.innerHTML = fmt(text);
+    var s = document.createElement('span'); s.className = 'stamp';
+    s.textContent = (role === 'me' ? '' : t('bot') + ' · ') + new Date().toLocaleTimeString(SDI.lang === 'pl' ? 'pl-PL' : 'en-GB', { hour: '2-digit', minute: '2-digit' });
+    w.append(b, s); body.appendChild(w); down();
+  }
+  function down() { body.scrollTop = body.scrollHeight; setTimeout(function () { body.scrollTop = body.scrollHeight; }, 50); }
+  /* escape first, then add markup — no HTML from the model reaches the page */
+  function fmt(str) {
+    var d = document.createElement('div'); d.textContent = String(str);
+    return d.innerHTML
+      .replace(/^\s*[*-]\s+/gm, '• ')
+      .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+      .replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+      .replace(/\n/g, '<br>');
+  }
+
+  /* ── Built-in demo answers (no AI endpoint configured) ── */
+  function demoAnswer(q) {
+    var pl = SDI.lang === 'pl', s = q.toLowerCase();
+    var has = function () { for (var i = 0; i < arguments.length; i++) if (s.indexOf(arguments[i]) > -1) return true; return false; };
+    var bookLine = (pl ? 'Wizytę umówisz online: ' : 'You can book online: ') + C.booking;
+    if (has('ból', 'boli', 'pain', 'hurt', 'opuch', 'swell'))
+      return pl ? 'Przykro mi, że boli. Nie zwlekaj — zadzwoń od razu: ' + C.phone + '. Postaramy się przyjąć jak najszybciej.' : 'Sorry to hear that. Please call right away: ' + C.phone + ' — we will try to see you as soon as possible.';
+    if (has('implant'))
+      return (pl ? 'Implant kosztuje **' + price('surg', 8) + '** (zależnie od systemu), korona porcelanowa na implancie ' + price('surg', 9) + '. Implantami zajmuje się Anastasiya Shlakunova. Dokładny plan lekarz ustala po badaniu i CBCT.\n'
+                 : 'An implant costs **' + price('surg', 8) + '** (depending on the system), a PFM crown on an implant ' + price('surg', 9) + '. Implants are placed by Anastasiya Shlakunova. The exact plan is set after an examination and CBCT.\n') + bookLine;
+    if (has('aparat', 'brace', 'ortodon', 'orthodon', 'invisalign', 'nakład', 'aligner'))
+      return (pl ? 'Aparat stały **' + price('ortho', 2) + '**, ruchomy ' + price('ortho', 1) + ', Clear Aligner ' + price('ortho', 4) + ', Invisalign ' + price('ortho', 3) + '. Konsultacja ortodontyczna ' + price('ortho', 0) + '. Ortodonci: Klaudia Sadowa i Agnieszka Nawrocka.\n'
+                 : 'Fixed braces **' + price('ortho', 2) + '**, removable ' + price('ortho', 1) + ', Clear Aligner ' + price('ortho', 4) + ', Invisalign ' + price('ortho', 3) + '. Orthodontic consultation ' + price('ortho', 0) + '. Orthodontists: Klaudia Sadowa and Agnieszka Nawrocka.\n') + bookLine;
+    if (has('dzieci', 'dziecko', 'child', 'kid', 'syn', 'córk', 'son', 'daughter'))
+      return pl ? 'Tak, przyjmujemy dzieci. Na początek polecamy wizytę adaptacyjną (' + price('kids', 0) + '). Wypełnienie zęba mlecznego ' + price('kids', 1) + ', lakowanie ' + price('kids', 3) + '.\n' + bookLine
+                : 'Yes, we treat children. We recommend starting with an adaptation visit (' + price('kids', 0) + '). Milk-tooth filling ' + price('kids', 1) + ', fissure sealing ' + price('kids', 3) + '.\n' + bookLine;
+    if (has('kanał', 'canal', 'endo'))
+      return (pl ? 'Leczenie kanałowe pod mikroskopem Zeiss: 1 kanał ' + price('endo', 0) + ', 2 kanały ' + price('endo', 1) + ', 3 kanały ' + price('endo', 2) + '.\n' : 'Root canal under a Zeiss microscope: 1 canal ' + price('endo', 0) + ', 2 canals ' + price('endo', 1) + ', 3 canals ' + price('endo', 2) + '.\n') + bookLine;
+    if (has('higien', 'hygien', 'czyszcz', 'clean', 'kamień', 'tartar'))
+      return pl ? 'Pakiet higienizacyjny (skaling, piaskowanie, polerowanie, fluoryzacja) kosztuje ' + price('hyg', 0) + ', pakiet GBT ' + price('hyg', 1) + '.\n' + bookLine : 'The hygiene package (scaling, air-polishing, polishing, fluoride) is ' + price('hyg', 0) + ', the GBT package ' + price('hyg', 1) + '.\n' + bookLine;
+    if (has('wybiel', 'whiten'))
+      return pl ? 'Wybielanie w gabinecie ' + price('white', 0) + ', nakładkowe ' + price('white', 1) + '.\n' + bookLine : 'In-office whitening ' + price('white', 0) + ', tray whitening ' + price('white', 1) + '.\n' + bookLine;
+    if (has('godzin', 'otwar', 'hour', 'open', 'sobot', 'saturday'))
+      return pl ? 'Pracujemy od poniedziałku do piątku 8:00–20:00 i w soboty 9:00–20:00. W niedzielę nieczynne.' : 'We are open Monday–Friday 8:00–20:00 and Saturday 9:00–20:00. Closed on Sunday.';
+    if (has('gdzie', 'adres', 'where', 'address', 'dojazd', 'direction'))
+      return (pl ? 'Jesteśmy przy ' : 'We are at ') + C.street + ', ' + C.city + (pl ? ' (Ochota, Szczęśliwice). Mapa: ' : ' (Ochota, Szczęśliwice). Map: ') + C.map;
+    if (has('lekarz', 'doktor', 'doctor', 'dentist', 'zespół', 'team'))
+      return (pl ? 'W SoftDent pracuje 11 lekarzy, m.in. ortodonci (Klaudia Sadowa, Agnieszka Nawrocka), chirurg-implantolog (Anastasiya Shlakunova) i endodonci (Maja Bonikowska, Magdalena Nagrodzka). Cały zespół: '
+                 : 'SoftDent has 11 dentists, incl. orthodontists (Klaudia Sadowa, Agnieszka Nawrocka), an oral surgeon & implantologist (Anastasiya Shlakunova) and endodontists (Maja Bonikowska, Magdalena Nagrodzka). Full team: ') + C.team;
+    if (has('umów', 'umówić', 'wizyt', 'termin', 'book', 'appointment', 'visit'))
+      return (pl ? 'Umówienie wizyty jest proste — formularz online: ' : 'Booking is easy — online form: ') + C.booking + (pl ? '\nlub telefonicznie: ' : '\nor by phone: ') + C.phone;
+    if (has('cen', 'koszt', 'ile', 'price', 'cost', 'how much'))
+      return (pl ? 'Przykładowe ceny: wypełnienie ' + price('cons', 0) + ', higienizacja ' + price('hyg', 0) + ', korona pełnoceramiczna ' + price('prosth', 0) + '. Pełny cennik: '
+                 : 'Sample prices: filling ' + price('cons', 0) + ', hygiene ' + price('hyg', 0) + ', all-ceramic crown ' + price('prosth', 0) + '. Full price list: ') + C.prices;
+    return pl ? 'W wersji demo odpowiadam na pytania o ceny, lekarzy, godziny i rezerwację. W pełnej wersji asystent AI rozumie dowolne pytania. ' + bookLine
+              : 'In demo mode I answer questions about prices, doctors, hours and booking. The full AI assistant understands any question. ' + bookLine;
+  }
+
+  info(); greet();
+  SDI.onLang(function () { info(); greet(); });
+})();
+</script>
+</body>
+</html>

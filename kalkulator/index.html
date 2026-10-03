@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="sd-title" content="doc_title">
+<title>Kalkulator · SoftDent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2716%27 fill=%27%23292A24%27/%3E%3Cpath d=%27M10 9c2-1 4 0 6 0s4-1 6 0c2 1 2 5 1 8-1 2-1 6-3 6s-2-5-4-5-2 5-4 5-2-4-3-6c-1-3-1-7 1-8z%27 fill=%27%23B39A68%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/sd.css">
+<style>
+.hero h1{max-width:17ch}
+.calc{background:var(--white);border:1px solid var(--beige);border-radius:var(--r-lg);box-shadow:var(--sh-soft);overflow:hidden;margin-bottom:16px}
+.calc-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px clamp(18px,3vw,30px);border-bottom:1px solid var(--beige);background:var(--sand);flex-wrap:wrap}
+.calc-top h2{font-size:28px}
+.calc-top p{font-size:14px;color:var(--ink-2);margin-top:2px}
+.sum{text-align:right}
+.sum-v{display:block;font:500 30px/1.1 var(--serif);margin-top:4px}
+.calc-body{padding:clamp(18px,3vw,30px)}
+.cstep{display:none}.cstep.on{display:block}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cat{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--cream);border:1px solid var(--beige);border-radius:var(--r-md);padding:16px;cursor:pointer;transition:all var(--t);position:relative}
+.cat:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:var(--sh-soft)}
+.cat-ic{font-size:24px}
+.cat-t{font-weight:600;font-size:15px;line-height:1.3}
+.cat-f{font-size:13px;color:var(--gold-dk);font-weight:600}
+.cat-n{position:absolute;top:10px;right:10px;min-width:22px;height:22px;border-radius:11px;background:var(--green);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;padding:0 6px}
+@media (max-width:780px){.cats{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.cats{grid-template-columns:1fr}}
+.sub-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.back{width:40px;height:40px;border-radius:50%;border:1px solid var(--beige);background:var(--white);cursor:pointer;display:grid;place-items:center;flex-shrink:0}
+.back svg{width:18px;height:18px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:14px;text-align:left;padding:14px 16px;border:1px solid var(--beige);border-radius:var(--r-md);background:var(--white);cursor:pointer;transition:all var(--t)}
+.opt:hover{border-color:var(--gold);background:var(--cream)}
+.opt.added{background:var(--green-wash);border-color:#9FD2B3}
+.opt-n{font-weight:500;font-size:15px}
+.opt-r{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.opt-p{font-weight:700;font-size:15px;white-space:nowrap}
+.opt-p small{font-weight:400;color:var(--ink-3)}
+.plus{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--cream);display:grid;place-items:center}
+.plus svg{width:15px;height:15px}
+.sub-go{margin-top:18px;display:flex;justify-content:flex-end}
+.total-panel{background:var(--ink);color:var(--on-dark);border-radius:var(--r-md);padding:24px;margin-bottom:16px}
+.total-panel .lbl{color:var(--on-dark-2)}
+.total-v{font:500 clamp(34px,5vw,46px)/1.1 var(--serif);margin-top:6px;color:var(--on-dark)}
+.total-note{font-size:13.5px;color:var(--on-dark-2);margin-top:10px}
+.cart{display:grid;gap:8px;margin-bottom:16px}
+.cart-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--beige);border-radius:var(--r-sm)}
+.cart-r{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.cart-p{font-weight:700;white-space:nowrap}
+.del{width:32px;height:32px;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--ink-3);display:grid;place-items:center}
+.del:hover{background:#FBEAE8;color:var(--bad)}
+.del svg{width:16px;height:16px}
+.cart-empty{padding:18px;text-align:center;color:var(--ink-3);border:1px dashed var(--beige);border-radius:var(--r-sm)}
+.next{background:var(--sand);border-radius:var(--r-md);padding:18px 20px;margin-bottom:14px}
+.next h4{font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:10px}
+.next ol{margin:0;padding-left:20px;display:grid;gap:4px}
+.warn{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);margin-bottom:18px}
+.warn svg{width:18px;height:18px;flex-shrink:0;color:var(--gold-dk);margin-top:1px}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.btn-ghost{background:var(--white);color:var(--ink);border-color:var(--beige)}
+.btn-ghost:hover{background:var(--sand);color:var(--ink)}
+.head{margin:56px 0 22px}
+.head p{color:var(--ink-2);margin-top:8px;max-width:60ch}
+.why{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.why-i{display:flex;gap:14px;background:var(--white);border:1px solid var(--beige);border-radius:var(--r-md);padding:18px}
+.why-ic{font-size:24px;flex-shrink:0}
+.why-i h3{font-size:21px;margin-bottom:4px}
+.why-i p{font-size:14.5px;color:var(--ink-2)}
+@media (max-width:640px){.why{grid-template-columns:1fr}}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--ink);color:var(--on-dark);transform:translateY(110%);transition:transform .3s var(--ease);padding:12px var(--gut) calc(12px + env(safe-area-inset-bottom))}
+.bar.on{transform:none}
+.bar-in{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.bar .lbl{color:var(--on-dark-2)}
+.bar-v{display:block;font:500 24px/1.1 var(--serif)}
+.bar-r{display:flex;gap:8px}
+.bar-btn{min-height:44px;padding:10px 16px;font-size:12.5px}
+</style>
+</head>
+<body data-base="../" data-page="calc">
+<header id="sd-head"></header>
+
+<main class="page wrap narrow">
+  <div class="dark hero rise">
+    <span class="eyebrow"><span class="dot"></span><span data-i="eyebrow"></span></span>
+    <h1 style="margin-top:16px" data-ih="h1"></h1>
+    <p class="lede" data-i="lede"></p>
+  </div>
+
+  <div class="calc">
+    <div class="calc-top">
+      <div><h2 data-i="builder"></h2><p id="hint"></p></div>
+      <div class="sum"><span class="lbl" data-i="running"></span><span class="sum-v num" id="running">0</span></div>
+    </div>
+    <div class="calc-body">
+      <div class="cstep on" id="st-cats"><div class="cats" id="cats"></div></div>
+
+      <div class="cstep" id="st-opts">
+        <div class="sub-top">
+          <button class="back" id="back" type="button" data-ial="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button>
+          <h3 id="opts-title"></h3>
+        </div>
+        <div class="opts" id="opts"></div>
+        <div class="sub-go">
+          <button class="btn" id="to-result" type="button"><span data-i="see"></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+
+      <div class="cstep" id="st-result">
+        <div class="total-panel">
+          <span class="lbl" data-i="estimate"></span>
+          <div class="total-v num" id="total">0</div>
+          <p class="total-note" id="total-note"></p>
+        </div>
+        <div class="cart" id="cart"></div>
+        <div class="next"><h4 data-i="next_h"></h4><ol><li data-i="n1"></li><li data-i="n2"></li><li data-i="n3"></li></ol></div>
+        <div class="warn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>
+          <span data-i="warn"></span>
+        </div>
+        <a class="btn btn-block" id="book" target="_blank" rel="noopener"><span data-i="book"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="btn-row">
+          <button class="btn btn-ghost" id="reset" type="button" data-i="reset"></button>
+          <button class="btn btn-ghost" id="more" type="button" data-i="more"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="head">
+    <span class="eyebrow" data-i="why_l"></span>
+    <h2 style="margin-top:10px" data-i="why_h"></h2>
+    <p data-i="why_p"></p>
+  </div>
+  <div class="why">
+    <div class="why-i"><span class="why-ic">🦷</span><span><h3 data-i="w1h"></h3><p data-i="w1p"></p></span></div>
+    <div class="why-i"><span class="why-ic">🔬</span><span><h3 data-i="w2h"></h3><p data-i="w2p"></p></span></div>
+    <div class="why-i"><span class="why-ic">🗓️</span><span><h3 data-i="w3h"></h3><p data-i="w3p"></p></span></div>
+    <div class="why-i"><span class="why-ic">👩‍⚕️</span><span><h3 data-i="w4h"></h3><p data-i="w4p"></p></span></div>
+  </div>
+
+  <div class="dark cta" style="margin-top:22px">
+    <h3 data-i="promo_h"></h3>
+    <p data-i="promo_p"></p>
+    <div class="cta-row">
+      <a class="btn btn-gold" id="to-umi" data-i="promo_b"></a>
+      <a class="btn btn-line" id="to-prices" target="_blank" rel="noopener" data-i="promo_l"></a>
+    </div>
+  </div>
+</main>
+
+<div class="bar" id="bar"><div class="bar-in">
+  <div><span class="lbl" data-i="yours"></span><span class="bar-v num" id="bar-total"></span></div>
+  <div class="bar-r"><button class="btn btn-ghost bar-btn" id="bar-view" type="button" data-i="view"></button><a class="btn bar-btn" id="bar-book" target="_blank" rel="noopener" data-i="book_s"></a></div>
+</div></div>
+
+<footer id="sd-foot"></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/config.js"></script>
+<script src="../assets/sd.js"></script>
+<script>
+(function () {
+  'use strict';
+  var C = SD.clinic;
+  SDI.add({
+    pl: {
+      doc_title: 'Kalkulator kosztów leczenia · SoftDent',
+      eyebrow: 'Cennik SoftDent · PLN', h1: 'Policz koszt<br><em>zanim usiądziesz w fotelu</em>',
+      lede: 'Wybierz potrzebne zabiegi — pokażemy sumę według aktualnego cennika SoftDent. Przejrzyście, bez niespodzianek.',
+      builder: 'Konfigurator zabiegów', running: 'Bieżąca suma',
+      h_cats: 'Wybierz kategorię, aby dodać zabiegi', h_opts: 'Kliknij zabieg, aby go dodać', h_res: 'Sprawdź listę i umów wizytę',
+      see: 'Zobacz wycenę', estimate: 'Orientacyjny koszt', from: 'od ',
+      note_from: 'Część zabiegów ma cenę „od” — suma pokazuje wariant minimalny.',
+      note_exact: 'Suma według cen z cennika SoftDent.',
+      empty: 'Lista jest pusta — wybierz zabiegi w poprzednim kroku.',
+      next_h: 'Co dalej', n1: 'Umówienie konsultacji', n2: 'Badanie i diagnostyka na miejscu (RTG, pantomogram, CBCT)', n3: 'Indywidualny plan leczenia z dokładnym kosztem',
+      warn: 'To wstępna wycena. Ostateczny plan leczenia i koszt ustala lekarz po badaniu i diagnostyce.',
+      book: 'Umów wizytę', book_s: 'Umów', reset: 'Wyczyść', more: '+ Dodaj więcej', yours: 'Twoja wycena', view: 'Zobacz',
+      del: 'Usuń', back: 'Wstecz',
+      why_l: 'Dlaczego SoftDent', why_h: 'Leczenie zaczyna się od dobrej diagnozy', why_p: 'Cena to jedno — liczy się też to, co za nią stoi.',
+      w1h: 'Od 2005 roku na Ochocie', w1p: 'Ponad 20 000 pacjentów i doświadczony, wielospecjalistyczny zespół.',
+      w2h: 'Diagnostyka na miejscu', w2p: 'RTG przy fotelu, pantomogram, cefalometria i tomografia CBCT. Kanały pod mikroskopem Zeiss.',
+      w3h: '6 dni w tygodniu', w3p: 'Pon.–pt. 8:00–20:00, sobota 9:00–20:00 — łatwiej znaleźć dogodny termin.',
+      w4h: 'Wszystko w jednym miejscu', w4p: 'Ortodoncja, implanty, protetyka, chirurgia, dzieci i higienizacja — jeden plan, jeden zespół.',
+      promo_h: 'Nie wiesz, czego potrzebujesz?', promo_p: 'Prześlij zdjęcie uśmiechu — Umi pokaże, co widać na zdjęciu, i podpowie, od czego zacząć.',
+      promo_b: 'Bezpłatna analiza zdjęcia', promo_l: 'Pełny cennik'
+    },
+    en: {
+      doc_title: 'Treatment cost calculator · SoftDent',
+      eyebrow: 'SoftDent price list · PLN', h1: 'Work out the cost<br><em>before you sit in the chair</em>',
+      lede: 'Choose the treatments you need — we show the total from the current SoftDent price list. Transparent, no surprises.',
+      builder: 'Treatment builder', running: 'Running total',
+      h_cats: 'Choose a category to add treatments', h_opts: 'Tap a treatment to add it', h_res: 'Check the list and book a visit',
+      see: 'See estimate', estimate: 'Indicative cost', from: 'from ',
+      note_from: 'Some treatments are priced “from” — the total shows the minimum option.',
+      note_exact: 'Total based on the SoftDent price list.',
+      empty: 'The list is empty — choose treatments in the previous step.',
+      next_h: 'Next steps', n1: 'Book a consultation', n2: 'Examination and on-site diagnostics (X-ray, panoramic, CBCT)', n3: 'Personal treatment plan with the exact cost',
+      warn: 'This is a preliminary estimate. The final treatment plan and cost are set by the dentist after examination and diagnostics.',
+      book: 'Book a visit', book_s: 'Book', reset: 'Clear', more: '+ Add more', yours: 'Your estimate', view: 'View',
+      del: 'Remove', back: 'Back',
+      why_l: 'Why SoftDent', why_h: 'Good treatment starts with a good diagnosis', why_p: 'Price is one thing — what stands behind it matters too.',
+      w1h: 'In Ochota since 2005', w1p: 'More than 20,000 patients and an experienced, multi-specialist team.',
+      w2h: 'On-site diagnostics', w2p: 'Chair-side X-ray, panoramic, cephalometric and CBCT imaging. Root canals under a Zeiss microscope.',
+      w3h: '6 days a week', w3p: 'Mon–Fri 8:00–20:00, Saturday 9:00–20:00 — easier to find a convenient slot.',
+      w4h: 'Everything in one place', w4p: 'Orthodontics, implants, prosthetics, surgery, children and hygiene — one plan, one team.',
+      promo_h: 'Not sure what you need?', promo_p: 'Upload a photo of your smile — Umi shows what is visible and suggests where to start.',
+      promo_b: 'Free photo analysis', promo_l: 'Full price list'
+    }
+  });
+  SDI.start();
+
+  var $ = function (id) { return document.getElementById(id); };
+  var t = SDI.t, picked = [], cur = null, step = 'st-cats';
+  var byKey = function (k) { return SD.prices.filter(function (c) { return c.k === k; })[0]; };
+  var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+
+  function links() {
+    $('book').href = C.booking; $('bar-book').href = C.booking;
+    $('to-prices').href = C.prices; $('to-umi').href = '../umi/?lang=' + SDI.lang;
+  }
+  function cats() {
+    $('cats').innerHTML = SD.prices.map(function (c) {
+      var n = picked.filter(function (p) { return p.k === c.k; }).length;
+      var min = Math.min.apply(null, c.o.map(function (o) { return o.p; }));
+      return '<button class="cat" type="button" data-k="' + c.k + '"><span class="cat-ic">' + c.ic + '</span>'
+        + '<span class="cat-t">' + esc(SDI.L(c.t)) + '</span><span class="cat-f">' + t('from') + SDI.money(min) + '</span>'
+        + (n ? '<span class="cat-n">' + n + '</span>' : '') + '</button>';
+    }).join('');
+  }
+  function opts() {
+    if (!cur) return;
+    var c = byKey(cur);
+    $('opts-title').textContent = c.ic + '  ' + SDI.L(c.t);
+    $('opts').innerHTML = c.o.map(function (o, i) {
+      var u = SDI.unitOf(o.u);
+      return '<button class="opt" type="button" data-i-o="' + i + '"><span class="opt-n">' + esc(SDI.L({ pl: o.pl, en: o.en })) + '</span>'
+        + '<span class="opt-r"><span class="opt-p num">' + SDI.priceOf(o) + (u ? ' <small>/ ' + u + '</small>' : '') + '</span>'
+        + '<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></span></button>';
+    }).join('');
+  }
+  function totals() {
+    var sum = 0, anyFrom = false;
+    picked.forEach(function (p) { sum += p.o.p; if (p.o.from || p.o.to) anyFrom = true; });
+    return { sum: sum, from: anyFrom, str: picked.length ? (anyFrom ? t('from') : '') + SDI.money(sum) : SDI.money(0) };
+  }
+  function render() {
+    var tt = totals();
+    $('running').textContent = tt.str; $('total').textContent = tt.str; $('bar-total').textContent = tt.str;
+    $('total-note').textContent = picked.length ? t(tt.from ? 'note_from' : 'note_exact') : '';
+    $('cart').innerHTML = picked.length ? picked.map(function (p, i) {
+      return '<div class="cart-row"><span>' + esc(SDI.L({ pl: p.o.pl, en: p.o.en })) + '</span><span class="cart-r"><span class="cart-p num">' + SDI.priceOf(p.o) + '</span>'
+        + '<button class="del" type="button" data-d="' + i + '" aria-label="' + t('del') + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/></svg></button></span></div>';
+    }).join('') : '<div class="cart-empty">' + t('empty') + '</div>';
+    cats(); bar();
+  }
+  function go(id) {
+    step = id;
+    ['st-cats', 'st-opts', 'st-result'].forEach(function (s) { $(s).classList.toggle('on', s === id); });
+    $('hint').textContent = t(id === 'st-cats' ? 'h_cats' : id === 'st-opts' ? 'h_opts' : 'h_res');
+    bar();
+  }
+  function bar() { $('bar').classList.toggle('on', picked.length > 0 && step !== 'st-result' && window.scrollY > 260); }
+  window.addEventListener('scroll', bar, { passive: true });
+
+  $('cats').addEventListener('click', function (e) { var b = e.target.closest('.cat'); if (!b) return; cur = b.dataset.k; opts(); go('st-opts'); });
+  $('opts').addEventListener('click', function (e) {
+    var b = e.target.closest('.opt'); if (!b) return;
+    picked.push({ k: cur, o: byKey(cur).o[+b.getAttribute('data-i-o')] });
+    b.classList.add('added'); setTimeout(function () { b.classList.remove('added'); }, 650);
+    render();
+  });
+  $('cart').addEventListener('click', function (e) { var b = e.target.closest('.del'); if (b) { picked.splice(+b.dataset.d, 1); render(); } });
+  $('back').addEventListener('click', function () { go('st-cats'); });
+  $('more').addEventListener('click', function () { go('st-cats'); });
+  var toRes = function () { go('st-result'); $('st-result').scrollIntoView({ block: 'start', behavior: 'smooth' }); };
+  $('to-result').addEventListener('click', toRes);
+  $('bar-view').addEventListener('click', toRes);
+  $('reset').addEventListener('click', function () { picked = []; render(); go('st-cats'); });
+
+  SDI.onLang(function () { links(); opts(); render(); go(step); });
+  links(); render(); go('st-cats');
+})();
+</script>
+</body>
+</html>

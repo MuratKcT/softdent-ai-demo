@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="sd-title" content="doc_title">
+<title>SoftDent · AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2716%27 fill=%27%23292A24%27/%3E%3Cpath d=%27M10 9c2-1 4 0 6 0s4-1 6 0c2 1 2 5 1 8-1 2-1 6-3 6s-2-5-4-5-2 5-4 5-2-4-3-6c-1-3-1-7 1-8z%27 fill=%27%23B39A68%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/sd.css">
+<style>
+main > section{margin-top:clamp(64px,9vw,104px)}
+.hero{padding-top:clamp(20px,5vw,64px)}
+.hero .dark{padding:clamp(32px,6vw,72px)}
+.hero h1{max-width:18ch;font-size:clamp(40px,6.4vw,72px)}
+.hero .cta-row{margin-top:30px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(217,201,163,.22);border-radius:var(--r-md);overflow:hidden;margin-top:44px}
+.stat{background:var(--ink);padding:18px 20px}
+.stat b{display:block;font:500 clamp(28px,3.4vw,38px)/1 var(--serif);color:var(--gold-lt)}
+.stat span{display:block;font-size:13.5px;color:var(--on-dark-2);margin-top:8px}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}}
+.sec-head{max-width:720px;margin-bottom:28px}
+.sec-head h2{margin-top:12px}
+.sec-head p{color:var(--ink-2);margin-top:12px;font-size:17px}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.why div{border-top:2px solid var(--gold);padding-top:18px}
+.why h3{font-size:24px;margin-bottom:8px}
+.why p{color:var(--ink-2);font-size:15px}
+@media (max-width:820px){.why{grid-template-columns:1fr}}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tool{background:var(--white);border:1px solid var(--beige);border-radius:var(--r-lg);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;box-shadow:var(--sh-soft);transition:transform var(--t),box-shadow var(--t)}
+.tool:hover{transform:translateY(-2px);box-shadow:var(--sh-lift)}
+.tool-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.tool-ic{width:52px;height:52px;border-radius:14px;background:var(--ink);color:var(--gold-lt);display:grid;place-items:center;flex-shrink:0}
+.tool-ic svg{width:26px;height:26px}
+.tool-no{font:500 15px/1 var(--serif);color:var(--taupe)}
+.tool h3{font-size:30px;margin-top:18px}
+.tool .tag{font:600 11.5px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dk);margin-top:6px}
+.tool > p{color:var(--ink-2);margin-top:12px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0 22px;padding-top:18px;border-top:1px solid var(--beige)}
+.split h4{font:600 11.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.split ul{margin:0;padding:0;list-style:none;display:grid;gap:7px;font-size:14.5px}
+.split li{display:flex;gap:8px}
+.split li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:8px;flex-shrink:0}
+.tool .btn{margin-top:auto;align-self:flex-start}
+@media (max-width:860px){.tools{grid-template-columns:1fr}}
+@media (max-width:460px){.split{grid-template-columns:1fr}}
+.data{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;align-items:stretch}
+.data .dark{margin:0}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.fact b{display:block;font:500 40px/1 var(--serif);color:var(--gold-lt)}
+.fact span{font-size:14px;color:var(--on-dark-2)}
+.team{background:var(--white);border:1px solid var(--beige);border-radius:var(--r-lg);padding:24px}
+.team .docs{margin-top:14px}
+.team .doc{font-size:13.5px}
+@media (max-width:860px){.data{grid-template-columns:1fr}}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:f}
+.flow li{list-style:none;counter-increment:f;padding:0 18px 0 0;position:relative}
+.flow li::before{content:"0" counter(f);display:block;font:500 15px/1 var(--serif);color:var(--gold-dk);margin-bottom:14px}
+.flow li::after{content:"";position:absolute;left:34px;right:18px;top:8px;height:1px;background:var(--beige)}
+.flow li:last-child::after{display:none}
+.flow h3{font-size:22px;margin-bottom:6px}
+.flow p{font-size:14.5px;color:var(--ink-2)}
+.flow-wrap{padding:0;margin:0}
+@media (max-width:860px){.flow{grid-template-columns:1fr 1fr;row-gap:28px}.flow li::after{display:none}}
+@media (max-width:480px){.flow{grid-template-columns:1fr}}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.trust div{background:var(--sand);border-radius:var(--r-md);padding:20px}
+.trust svg{width:24px;height:24px;color:var(--green)}
+.trust h3{font-size:20px;margin:12px 0 6px}
+.trust p{font-size:14px;color:var(--ink-2)}
+@media (max-width:860px){.trust{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.trust{grid-template-columns:1fr}}
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stage{background:var(--white);border:1px solid var(--beige);border-radius:var(--r-lg);padding:24px}
+.stage .lbl{color:var(--gold-dk)}
+.stage h3{margin:10px 0 8px}
+.stage p{font-size:14.5px;color:var(--ink-2)}
+@media (max-width:820px){.stages{grid-template-columns:1fr}}
+.final{text-align:center}
+.final h2{max-width:20ch;margin:14px auto 0}
+.final p{margin:14px auto 0}
+.final .cta-row{justify-content:center}
+</style>
+</head>
+<body data-base="" data-page="home">
+<header id="sd-head"></header>
+
+<main>
+  <!-- Hero -->
+  <div class="hero wrap">
+    <div class="dark rise">
+      <span class="eyebrow"><span class="dot"></span><span data-i="hero_l"></span></span>
+      <h1 style="margin-top:18px" data-ih="hero_h"></h1>
+      <p class="lede" data-i="hero_p"></p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="#tools" data-i="hero_b1"></a>
+        <a class="btn btn-line" id="hero-umi" data-i="hero_b2"></a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>4</b><span data-i="st1"></span></div>
+        <div class="stat"><b>24/7</b><span data-i="st2"></span></div>
+        <div class="stat"><b>PL · EN</b><span data-i="st3"></span></div>
+        <div class="stat"><b id="n-prices"></b><span data-i="st4"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why -->
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i="why_l"></span>
+      <h2 data-ih="why_h"></h2>
+    </div>
+    <div class="why">
+      <div><h3 data-i="w1h"></h3><p data-i="w1p"></p></div>
+      <div><h3 data-i="w2h"></h3><p data-i="w2p"></p></div>
+      <div><h3 data-i="w3h"></h3><p data-i="w3p"></p></div>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section class="wrap" id="tools">
+    <div class="sec-head">
+      <span class="eyebrow" data-i="tools_l"></span>
+      <h2 data-ih="tools_h"></h2>
+      <p data-i="tools_p"></p>
+    </div>
+    <div class="tools" id="tool-list"></div>
+  </section>
+
+  <!-- Data -->
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i="data_l"></span>
+      <h2 data-ih="data_h"></h2>
+      <p data-i="data_p"></p>
+    </div>
+    <div class="data">
+      <div class="dark">
+        <span class="eyebrow"><span class="dot"></span>softdent.com.pl</span>
+        <div class="facts">
+          <div class="fact"><b id="f-docs"></b><span data-i="f1"></span></div>
+          <div class="fact"><b id="f-prices"></b><span data-i="f2"></span></div>
+          <div class="fact"><b id="f-cats"></b><span data-i="f3"></span></div>
+          <div class="fact"><b>6</b><span data-i="f4"></span></div>
+        </div>
+        <p class="lede" style="font-size:15px;margin-top:22px" id="f-addr"></p>
+      </div>
+      <div class="team">
+        <span class="lbl" data-i="team_l"></span>
+        <div class="docs" id="team"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flow -->
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i="flow_l"></span>
+      <h2 data-ih="flow_h"></h2>
+    </div>
+    <ol class="flow flow-wrap">
+      <li><h3 data-i="fl1h"></h3><p data-i="fl1p"></p></li>
+      <li><h3 data-i="fl2h"></h3><p data-i="fl2p"></p></li>
+      <li><h3 data-i="fl3h"></h3><p data-i="fl3p"></p></li>
+      <li><h3 data-i="fl4h"></h3><p data-i="fl4p"></p></li>
+    </ol>
+  </section>
+
+  <!-- Trust -->
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i="tr_l"></span>
+      <h2 data-ih="tr_h"></h2>
+    </div>
+    <div class="trust">
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v6c0 4.4 3 7.9 7 9 4-1.1 7-4.6 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg><h3 data-i="t1h"></h3><p data-i="t1p"></p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg><h3 data-i="t2h"></h3><p data-i="t2p"></p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg><h3 data-i="t3h"></h3><p data-i="t3p"></p></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><h3 data-i="t4h"></h3><p data-i="t4p"></p></div>
+    </div>
+  </section>
+
+  <!-- Stages -->
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i="sg_l"></span>
+      <h2 data-ih="sg_h"></h2>
+    </div>
+    <div class="stages">
+      <div class="stage"><span class="lbl" data-i="sg1l"></span><h3 data-i="sg1h"></h3><p data-i="sg1p"></p></div>
+      <div class="stage"><span class="lbl" data-i="sg2l"></span><h3 data-i="sg2h"></h3><p data-i="sg2p"></p></div>
+      <div class="stage"><span class="lbl" data-i="sg3l"></span><h3 data-i="sg3h"></h3><p data-i="sg3p"></p></div>
+    </div>
+  </section>
+
+  <!-- Final -->
+  <section class="wrap">
+    <div class="dark final">
+      <span class="eyebrow"><span class="dot"></span><span data-i="fin_l"></span></span>
+      <h2 data-ih="fin_h"></h2>
+      <p class="lede" data-i="fin_p"></p>
+      <div class="cta-row" id="fin-links"></div>
+    </div>
+  </section>
+</main>
+
+<footer id="sd-foot"></footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/sd.js"></script>
+<script>
+(function () {
+  'use strict';
+  SDI.add({
+    pl: {
+      doc_title: 'SoftDent · Narzędzia AI dla pacjentów — prezentacja',
+      hero_l: 'Propozycja dla SoftDent', hero_h: 'Cztery narzędzia AI, które <em>pracują dla SoftDent</em> całą dobę',
+      hero_p: 'Analiza zdjęcia zębów, projekt uśmiechu, kalkulator kosztów i asystent czatu — zbudowane na cenniku, zespole i danych SoftDent. Wszystko działa na żywo, po polsku i po angielsku.',
+      hero_b1: 'Zobacz narzędzia', hero_b2: 'Wypróbuj Umi',
+      st1: 'narzędzia gotowe do wdrożenia', st2: 'odpowiedzi, także po godzinach pracy', st3: 'dwa języki, przełączane jednym kliknięciem', st4: 'pozycji z cennika SoftDent w systemie',
+      why_l: 'Dlaczego to ma sens', why_h: 'Pacjent decyduje, <em>zanim zadzwoni</em>',
+      w1h: 'Pytania przychodzą wieczorem', w1p: 'Recepcja pracuje do 20:00, a pacjenci szukają informacji także później. Asystent odpowiada od razu i kieruje do rezerwacji online.',
+      w2h: '„Ile to będzie kosztować?”', w2p: 'To najczęstsze pytanie przed pierwszą wizytą. Przejrzyste ceny z cennika SoftDent budują zaufanie i odciążają telefon.',
+      w3h: 'Stres przed dentystą', w3p: 'Zdjęcie i wstępna ocena w domu obniżają barierę pierwszego kontaktu — pacjent przychodzi z konkretnym pytaniem.',
+      tools_l: 'Narzędzia', tools_h: 'Cztery wejścia do gabinetu — <em>jeden zespół</em>', tools_p: 'Każde narzędzie kończy się tym samym: konkretną ceną, właściwym lekarzem SoftDent i linkiem do rezerwacji.',
+      t_open: 'Otwórz demo', t_pat: 'Dla pacjenta', t_cli: 'Dla kliniki',
+      umi_tag: 'Wstępna ocena ze zdjęcia', umi_p: 'Pacjent robi zdjęcie zębów lub przesyła RTG. AI ocenia stan, nadaje priorytet i dobiera lekarza z zespołu.',
+      umi_a: 'Wynik w ok. 15–30 sekund|Ceny jednostkowe z cennika|Polecany lekarz SoftDent',
+      umi_b: 'Zgłoszenie z priorytetem (pilne / rutynowe)|Opis kliniczny i kod ICD-10|Zdjęcie i opis dolegliwości',
+      zara_tag: 'Wizualizacja uśmiechu', zara_p: 'Z selfie AI tworzy wizualizację „przed / po”, ocenia kolor i symetrię oraz proponuje plan estetyczny z cenami.',
+      zara_a: 'Suwak „przed / po”|Plan w 3 krokach|Orientacyjny koszt zabiegów',
+      zara_b: 'Pacjenci estetyczni: wybielanie, bonding, nakładki|Ocena w skali VITA|Lekarze od estetyki i ortodoncji',
+      calc_tag: 'Konfigurator kosztów', calc_p: 'Interaktywny cennik: pacjent składa listę zabiegów i od razu widzi sumę według cennika SoftDent.',
+      calc_a: 'Wszystkie kategorie z cennika|Suma na bieżąco|Bez zakładania konta',
+      calc_b: 'Mniej telefonów o ceny|Pacjent przychodzi z realnymi oczekiwaniami|Aktualizacja cen w jednym pliku',
+      chat_tag: 'Czat na stronie', chat_p: 'Asystent zna cennik, zespół, godziny i diagnostykę SoftDent. Odpowiada w języku pacjenta i prowadzi do rezerwacji.',
+      chat_a: 'Odpowiedź w kilka sekund|Polski, angielski i inne języki|Pilne przypadki → telefon',
+      chat_b: 'Odciążenie recepcji|Obsługa po godzinach|Spójne, sprawdzone odpowiedzi',
+      data_l: 'Dane SoftDent', data_h: 'Zbudowane na <em>Waszych</em> danych', data_p: 'Narzędzia nie zgadują. Korzystają wyłącznie z cennika, zespołu i informacji opublikowanych na softdent.com.pl.',
+      f1: 'lekarzy w bazie', f2: 'pozycji cennika', f3: 'kategorii zabiegów', f4: 'dni w tygodniu w godzinach pracy',
+      team_l: 'Zespół, do którego AI kieruje pacjentów',
+      flow_l: 'Jak to działa', flow_h: 'Od pytania do <em>wizyty</em>',
+      fl1h: 'Pacjent na stronie', fl1p: 'Narzędzia osadzone na softdent.com.pl jako podstrony lub widżet.',
+      fl2h: 'Analiza AI', fl2p: 'Zdjęcie lub pytanie analizowane z uwzględnieniem cennika i zespołu SoftDent.',
+      fl3h: 'Konkretny wynik', fl3p: 'Ocena, cena, polecany lekarz i link do rezerwacji online.',
+      fl4h: 'Zgłoszenie w recepcji', fl4p: 'W wersji produkcyjnej: powiadomienie e-mail / komunikator i lista zgłoszeń.',
+      tr_l: 'Odpowiedzialnie', tr_h: 'Bezpieczne dla pacjenta, <em>spójne z marką</em>',
+      t1h: 'Zgoda pacjenta', t1p: 'Zdjęcie przetwarzane dopiero po zgodzie. Bez zakładania konta.',
+      t2h: 'Wynik wstępny', t2p: 'Każdy wynik jest wyraźnie oznaczony — nie zastępuje badania u lekarza.',
+      t3h: 'Kontrola treści', t3p: 'Ceny, zespół i ton odpowiedzi ustala klinika. AI nie wymyśla cen ani rabatów.',
+      t4h: 'Demo bez danych', t4p: 'W tej prezentacji dane kontaktowe nie są nigdzie wysyłane ani zapisywane.',
+      sg_l: 'Wdrożenie', sg_h: 'Trzy etapy <em>do startu</em>',
+      sg1l: 'Etap 1', sg1h: 'Konfiguracja', sg1p: 'Weryfikacja cennika, zespołu i komunikacji z SoftDent. Ustalenie tonu odpowiedzi.',
+      sg2l: 'Etap 2', sg2h: 'Integracja', sg2p: 'Osadzenie na softdent.com.pl w kolorystyce strony, powiadomienia dla recepcji.',
+      sg3l: 'Etap 3', sg3h: 'Pilotaż', sg3p: 'Testy z zespołem, poprawki i uruchomienie dla pacjentów.',
+      fin_l: 'Następny krok', fin_h: 'Wypróbuj każde narzędzie <em>na żywo</em>', fin_p: 'Najlepiej z własnym zdjęciem lub pytaniem, które pacjenci zadają najczęściej.'
+    },
+    en: {
+      doc_title: 'SoftDent · AI tools for patients — overview',
+      hero_l: 'A proposal for SoftDent', hero_h: 'Four AI tools that <em>work for SoftDent</em> around the clock',
+      hero_p: 'Dental photo analysis, smile design, a cost calculator and a chat assistant — built on SoftDent\'s price list, team and clinic data. Everything runs live, in Polish and English.',
+      hero_b1: 'See the tools', hero_b2: 'Try Umi',
+      st1: 'tools ready to deploy', st2: 'answers, also after opening hours', st3: 'two languages, one click to switch', st4: 'SoftDent price-list items in the system',
+      why_l: 'Why it makes sense', why_h: 'Patients decide <em>before they call</em>',
+      w1h: 'Questions come in the evening', w1p: 'The front desk works until 20:00, but patients look for answers later too. The assistant replies instantly and points to online booking.',
+      w2h: '“How much will it cost?”', w2p: 'The most common question before a first visit. Transparent prices from the SoftDent list build trust and take load off the phone.',
+      w3h: 'Dental anxiety', w3p: 'A photo and a preliminary assessment at home lower the barrier to first contact — patients arrive with a concrete question.',
+      tools_l: 'The tools', tools_h: 'Four ways into the clinic — <em>one team</em>', tools_p: 'Every tool ends the same way: a concrete price, the right SoftDent dentist and a booking link.',
+      t_open: 'Open demo', t_pat: 'For the patient', t_cli: 'For the clinic',
+      umi_tag: 'Photo pre-assessment', umi_p: 'The patient takes a photo of their teeth or uploads an X-ray. AI assesses the condition, sets a priority and matches a dentist from the team.',
+      umi_a: 'Result in about 15–30 seconds|Unit prices from the list|Recommended SoftDent dentist',
+      umi_b: 'Request with priority (urgent / routine)|Clinical notes and ICD-10 code|Photo and description of symptoms',
+      zara_tag: 'Smile visualisation', zara_p: 'From a selfie, AI creates a before/after visualisation, rates shade and symmetry and proposes an aesthetic plan with prices.',
+      zara_a: 'Before / after slider|3-step plan|Indicative treatment cost',
+      zara_b: 'Aesthetic patients: whitening, bonding, aligners|VITA shade assessment|Aesthetic and orthodontic dentists',
+      calc_tag: 'Cost builder', calc_p: 'An interactive price list: the patient builds a list of treatments and instantly sees the total from the SoftDent price list.',
+      calc_a: 'All price-list categories|Live total|No account needed',
+      calc_b: 'Fewer calls about prices|Patients arrive with realistic expectations|Prices updated in one file',
+      chat_tag: 'Website chat', chat_p: 'The assistant knows SoftDent\'s prices, team, hours and diagnostics. It replies in the patient\'s language and leads to booking.',
+      chat_a: 'Answer within seconds|Polish, English and more|Urgent cases → phone',
+      chat_b: 'Less load on the front desk|After-hours coverage|Consistent, verified answers',
+      data_l: 'SoftDent data', data_h: 'Built on <em>your</em> data', data_p: 'The tools don\'t guess. They use only the price list, team and information published on softdent.com.pl.',
+      f1: 'dentists in the system', f2: 'price-list items', f3: 'treatment categories', f4: 'days a week of opening hours',
+      team_l: 'The team AI refers patients to',
+      flow_l: 'How it works', flow_h: 'From question to <em>visit</em>',
+      fl1h: 'Patient on the website', fl1p: 'Tools embedded on softdent.com.pl as pages or a widget.',
+      fl2h: 'AI analysis', fl2p: 'Photo or question analysed against the SoftDent price list and team.',
+      fl3h: 'Concrete result', fl3p: 'Assessment, price, recommended dentist and an online booking link.',
+      fl4h: 'Request at the front desk', fl4p: 'In production: e-mail / messenger notification and a request list.',
+      tr_l: 'Responsibly', tr_h: 'Safe for patients, <em>on-brand</em>',
+      t1h: 'Patient consent', t1p: 'Photos are processed only after consent. No account required.',
+      t2h: 'Preliminary result', t2p: 'Every result is clearly labelled — it does not replace an examination.',
+      t3h: 'Content control', t3p: 'Prices, team and tone are set by the clinic. AI never invents prices or discounts.',
+      t4h: 'No data in the demo', t4p: 'In this presentation contact details are not sent or stored anywhere.',
+      sg_l: 'Rollout', sg_h: 'Three stages <em>to launch</em>',
+      sg1l: 'Stage 1', sg1h: 'Configuration', sg1p: 'Verify price list, team and messaging with SoftDent. Agree on the tone of answers.',
+      sg2l: 'Stage 2', sg2h: 'Integration', sg2p: 'Embed on softdent.com.pl in the site\'s colours, notifications for the front desk.',
+      sg3l: 'Stage 3', sg3h: 'Pilot', sg3p: 'Testing with the team, refinements and launch for patients.',
+      fin_l: 'Next step', fin_h: 'Try every tool <em>live</em>', fin_p: 'Ideally with your own photo or the question patients ask most often.'
+    }
+  });
+  SDI.start();
+
+  var $ = function (id) { return document.getElementById(id); };
+  var t = SDI.t, C = SD.clinic;
+  var ICONS = {
+    umi: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h1.6l1.2-1.8A1 1 0 0 1 8.6 4h6.8a1 1 0 0 1 .8.2L17.4 6H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="12.5" r="3.2"/></svg>',
+    zara: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 4.6L18.5 9l-4.6 1.9L12 15.5l-1.9-4.6L5.5 9l4.6-1.4z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>',
+    calc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 18.5h8"/></svg>',
+    chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>'
+  };
+  var TOOLS = [['umi', 'Umi', 'umi/'], ['zara', 'Zara', 'zara/'], ['calc', null, 'kalkulator/'], ['chat', null, 'asystent/']];
+  var li = function (s) { return s.split('|').map(function (x) { return '<li>' + x + '</li>'; }).join(''); };
+
+  function render() {
+    var q = '?lang=' + SDI.lang;
+    var nPrices = SD.prices.reduce(function (n, c) { return n + c.o.length; }, 0);
+    $('n-prices').textContent = nPrices; $('f-prices').textContent = nPrices;
+    $('f-docs').textContent = SD.doctors.length; $('f-cats').textContent = SD.prices.length;
+    $('f-addr').textContent = C.street + ', ' + C.city + ' · ' + C.phone;
+    $('hero-umi').href = 'umi/' + q;
+    $('tool-list').innerHTML = TOOLS.map(function (x, i) {
+      var name = x[1] || t(x[0] === 'calc' ? 'nav_calc' : 'nav_chat');
+      return '<article class="tool"><div class="tool-top"><span class="tool-ic">' + ICONS[x[0]] + '</span><span class="tool-no">0' + (i + 1) + '</span></div>'
+        + '<h3>' + name + '</h3><div class="tag">' + t(x[0] + '_tag') + '</div><p>' + t(x[0] + '_p') + '</p>'
+        + '<div class="split"><div><h4>' + t('t_pat') + '</h4><ul>' + li(t(x[0] + '_a')) + '</ul></div><div><h4>' + t('t_cli') + '</h4><ul>' + li(t(x[0] + '_b')) + '</ul></div></div>'
+        + '<a class="btn" href="' + x[2] + q + '">' + t('t_open') + ' →</a></article>';
+    }).join('');
+    $('team').innerHTML = SD.doctors.map(function (d) {
+      return '<span class="doc" title="' + SDI.L(d.r) + '"><i>' + SDI.initials(d.n) + '</i>' + d.n + '</span>';
+    }).join('');
+    $('fin-links').innerHTML = TOOLS.map(function (x, i) {
+      return '<a class="btn ' + (i ? 'btn-line' : 'btn-gold') + '" href="' + x[2] + q + '">' + (x[1] || t(x[0] === 'calc' ? 'nav_calc' : 'nav_chat')) + '</a>';
+    }).join('');
+  }
+  render(); SDI.onLang(render);
+})();
+</script>
+</body>
+</html>

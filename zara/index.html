@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="sd-title" content="doc_title">
+<title>Zara · SoftDent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2716%27 fill=%27%23292A24%27/%3E%3Cpath d=%27M10 9c2-1 4 0 6 0s4-1 6 0c2 1 2 5 1 8-1 2-1 6-3 6s-2-5-4-5-2 5-4 5-2-4-3-6c-1-3-1-7 1-8z%27 fill=%27%23B39A68%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/sd.css">
+<style>
+.intro h1{max-width:15ch}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{border:1px solid var(--beige);background:var(--cream);border-radius:999px;padding:9px 15px;font-size:14px;font-weight:500;cursor:pointer;transition:all var(--t)}
+.pill:hover{border-color:var(--gold)}
+.pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.form h3{margin:6px 0 18px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px;max-width:520px}
+.stat{border:1px solid rgba(217,201,163,.3);border-radius:var(--r-md);padding:12px 14px}
+.stat b{display:block;font:500 24px/1.1 var(--serif);color:var(--on-dark);margin-top:6px}
+.ba-card{padding:12px}
+.ba{position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:4/3;background:var(--ink);touch-action:none;user-select:none;cursor:ew-resize}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba .line{position:absolute;top:0;bottom:0;width:2px;background:var(--cream);transform:translateX(-1px);box-shadow:0 0 12px rgba(0,0,0,.35)}
+.knob{position:absolute;top:50%;width:46px;height:46px;border-radius:50%;background:var(--cream);border:0;transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:var(--sh-lift);cursor:ew-resize;color:var(--ink)}
+.knob svg{width:22px;height:22px}
+.tag{position:absolute;top:14px;padding:6px 12px;border-radius:999px;font:600 11.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;background:rgba(41,42,36,.75);color:var(--cream);backdrop-filter:blur(6px)}
+.tag.l{left:14px}.tag.r{right:14px;background:var(--gold);color:var(--ink)}
+.ba.single{cursor:default}
+.ba.single .line,.ba.single .knob,.ba.single .tag.r,.ba.single .after{display:none}
+.ba.single .before{clip-path:none!important}
+.ba-note{font-size:13.5px;color:var(--ink-3);text-align:center;margin:10px 0 2px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tags span{background:var(--gold-wash);color:var(--gold-dk);border-radius:999px;padding:6px 12px;font-size:13.5px;font-weight:600}
+.expect{margin-top:14px;padding:12px 14px;border-left:3px solid var(--gold);background:var(--sand);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:14.5px}
+.links{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:6px}
+</style>
+</head>
+<body data-base="../" data-page="zara">
+<header id="sd-head"></header>
+
+<main class="page wrap narrow">
+  <div class="restart-row">
+    <span data-mode></span>
+    <button class="restart" id="restart" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+      <span data-i="restart"></span>
+    </button>
+  </div>
+
+  <!-- 1 · Start -->
+  <section class="step on" id="s-start">
+    <div class="dark intro rise">
+      <span class="eyebrow"><span class="dot"></span><span data-i="eyebrow"></span></span>
+      <h1 style="margin-top:16px" data-ih="h1"></h1>
+      <p class="lede" data-i="lede"></p>
+      <div class="acts">
+        <button class="act act-1" type="button" id="btn-cam">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="4"/></svg>
+          <span><span class="act-t" data-i="cam_t"></span><br><span class="act-s" data-i="cam_s"></span></span>
+        </button>
+        <button class="act act-2" type="button" id="btn-file">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+          <span><span class="act-t" data-i="file_t"></span><br><span class="act-s" data-i="file_s"></span></span>
+        </button>
+      </div>
+      <input type="file" id="file-in" class="hide" accept="image/*">
+      <input type="file" id="file-cam" class="hide" accept="image/*" capture="user">
+      <p class="err" id="err-start" role="alert"></p>
+      <p class="shield">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span data-i="shield"></span>
+      </p>
+    </div>
+    <div class="gets">
+      <div class="get rise"><div class="get-n" data-i="g1n"></div><h3 data-i="g1h"></h3><p data-i="g1p"></p></div>
+      <div class="get rise"><div class="get-n" data-i="g2n"></div><h3 data-i="g2h"></h3><p data-i="g2p"></p></div>
+      <div class="get rise"><div class="get-n" data-i="g3n"></div><h3 data-i="g3h"></h3><p data-i="g3p"></p></div>
+    </div>
+    <p class="fine" data-ih="fine"></p>
+  </section>
+
+  <div class="prog hide" id="prog">
+    <span class="pn" id="pn1"><span class="pd">1</span><span data-i="p1"></span></span><span class="pl" id="pl1"></span>
+    <span class="pn" id="pn2"><span class="pd">2</span><span data-i="p2"></span></span><span class="pl" id="pl2"></span>
+    <span class="pn" id="pn3"><span class="pd">3</span><span data-i="p3"></span></span>
+  </div>
+
+  <!-- 2 · Wishes -->
+  <section class="step" id="s-form">
+    <div class="grid2">
+      <figure class="frame rise">
+        <img id="form-img" alt="">
+        <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+        <button class="swap" type="button" id="btn-swap" data-i="swap"></button>
+      </figure>
+      <form class="card form rise" id="zara-form" novalidate style="margin:0">
+        <span class="lbl" data-i="step2"></span>
+        <h3 data-i="wish_h"></h3>
+        <div class="field"><div class="pills" id="pills"></div></div>
+        <div class="field">
+          <label for="wish"><span data-i="wish_l"></span> <span class="opt" data-i="optional"></span></label>
+          <textarea id="wish" maxlength="600" data-iph="wish_ph"></textarea>
+        </div>
+        <label class="check"><input type="checkbox" id="consent"> <span data-i="consent_c"></span></label>
+        <button class="btn btn-block" id="submit" type="submit">
+          <span data-i="submit"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="err" id="err-form" role="alert"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- 3 · Loading -->
+  <section class="step" id="s-load">
+    <div class="grid2">
+      <figure class="frame"><img id="load-img" alt=""><span class="scan"></span>
+        <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span></figure>
+      <div class="card load" style="margin:0">
+        <h2 data-i="load_h"></h2>
+        <p class="load-msg" id="load-msg"></p>
+        <div class="rail"><i id="rail"></i></div>
+        <ul class="steps" id="load-steps">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span><span data-i="s1"></span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span><span data-i="s2"></span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span><span data-i="s3"></span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span><span data-i="s4"></span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span><span data-i="s5"></span></li>
+        </ul>
+        <p class="consent" style="text-align:left;margin-top:18px" data-i="wait"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Result -->
+  <section class="step" id="s-result">
+    <div class="dark rise">
+      <span class="eyebrow"><span class="dot"></span><span id="r-style"></span></span>
+      <div class="v-state" id="r-title"></div>
+      <p class="v-sub" id="r-summary"></p>
+      <div class="scale" id="r-scale">
+        <div class="scale-head"><span class="lbl" data-i="score_l"></span><span class="scale-val"><b id="r-score">–</b> / 10</span></div>
+        <div class="track"><span class="pin" id="r-pin"></span></div>
+        <div class="ticks"><span data-i="tick_l"></span><span data-i="tick_r"></span></div>
+      </div>
+      <div class="stats" id="r-stats">
+        <div class="stat"><span class="lbl" data-i="color"></span><b id="r-color">–</b></div>
+        <div class="stat"><span class="lbl" data-i="align"></span><b id="r-align">–</b></div>
+        <div class="stat"><span class="lbl" data-i="sym"></span><b id="r-sym">–</b></div>
+      </div>
+    </div>
+
+    <div class="card ba-card rise">
+      <div class="ba" id="ba" role="group">
+        <img class="after" id="img-after" alt="">
+        <img class="before" id="img-before" alt="">
+        <div class="line" id="ba-line"></div>
+        <button type="button" class="knob" id="ba-knob" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" data-ial="slider">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg>
+        </button>
+        <span class="tag l" data-i="before"></span>
+        <span class="tag r" data-i="after"></span>
+      </div>
+      <p class="ba-note" id="ba-note"></p>
+    </div>
+
+    <div class="card rise" id="r-plan-card">
+      <span class="lbl" data-i="plan_l"></span>
+      <h3 style="margin-top:6px" data-i="plan_h"></h3>
+      <ol class="plan" id="r-steps"></ol>
+      <div class="tags" id="r-services"></div>
+      <div class="expect" id="r-expected"></div>
+      <div class="cost" id="r-cost">
+        <div class="cost-main">
+          <span class="lbl" data-i="cost_l"></span>
+          <div class="cost-v" id="r-price"></div>
+          <ul class="pitems hide" id="r-items"></ul>
+          <p class="pnote hide" id="r-note"></p>
+        </div>
+        <a id="r-price-link" target="_blank" rel="noopener" style="font-weight:600"><span data-i="pricelist"></span> →</a>
+      </div>
+    </div>
+
+    <div class="card rise" id="r-docs-card">
+      <span class="lbl" data-i="docs_l"></span>
+      <h3 style="margin-top:6px" data-i="docs_h"></h3>
+      <div class="docs" id="r-docs"></div>
+    </div>
+
+    <div class="dark cta rise">
+      <h3 data-i="cta_h"></h3>
+      <p data-i="cta_p"></p>
+      <div class="cta-row">
+        <a class="btn" id="book-link" target="_blank" rel="noopener" data-i="book"></a>
+        <a class="btn btn-line" id="call-link"></a>
+      </div>
+    </div>
+
+    <div class="links">
+      <button class="linkbtn" type="button" id="dl-btn" data-i="save"></button>
+      <button class="linkbtn" type="button" data-restart data-i="again"></button>
+    </div>
+    <p class="legal" data-i="legal"></p>
+  </section>
+
+  <!-- Notice -->
+  <section class="step" id="s-notice">
+    <div class="dark rise">
+      <span class="eyebrow"><span class="dot"></span><span id="n-eyebrow"></span></span>
+      <div class="v-state" id="n-title"></div>
+      <p class="v-sub" id="n-text"></p>
+      <div class="cta-row">
+        <button class="btn btn-gold" type="button" data-restart data-i="retry"></button>
+        <a class="btn btn-line" id="call-link-2"></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="cam" id="cam" role="dialog">
+  <video id="cam-video" playsinline autoplay muted></video>
+  <div class="cam-oval"></div>
+  <div class="cam-top"><button class="cam-b" type="button" id="cam-close" data-i="cancel"></button><button class="cam-b" type="button" id="cam-flip" data-i="flip"></button></div>
+  <div class="cam-tip" data-i="cam_tip"></div>
+  <div class="cam-bot"><button class="shutter" type="button" id="cam-shot" data-ial="cam_t"></button></div>
+</div>
+
+<footer id="sd-foot"></footer>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/config.js"></script>
+<script src="../assets/sd.js"></script>
+<script>
+(function () {
+  'use strict';
+  var C = SD.clinic;
+  SDI.add({
+    pl: {
+      doc_title: 'Zara — projekt uśmiechu AI · SoftDent',
+      restart: 'Zacznij od nowa', eyebrow: 'Zara · projekt uśmiechu',
+      h1: 'Zobacz swój<br><em>nowy uśmiech</em> jeszcze przed wizytą',
+      lede: 'Zrób zdjęcie uśmiechu — Zara pokaże, jak może wyglądać po leczeniu, przygotuje plan i policzy orientacyjny koszt według cennika SoftDent.',
+      cam_t: 'Zrób zdjęcie', cam_s: 'Aparat telefonu', file_t: 'Z galerii', file_s: 'Gotowe zdjęcie',
+      shield: 'Bezpłatnie i bez zobowiązań. Ostateczny plan ustala z Tobą lekarz podczas konsultacji.',
+      g1n: '01 / PROJEKT', g1h: 'Twój nowy uśmiech', g1p: 'Wizualizacja AI: kolor, kształt i symetria zębów po leczeniu.',
+      g2n: '02 / PLAN', g2h: 'Co jest potrzebne', g2p: 'Zabiegi i etapy dobrane właśnie do Twojego uśmiechu.',
+      g3n: '03 / KOSZT', g3h: 'Ile to kosztuje', g3p: 'Ceny jednostkowe z aktualnego cennika SoftDent.',
+      fine: '<b>To wstępna wizualizacja.</b> Nie zastępuje wizyty — ostateczny plan lekarz ustala po badaniu.',
+      p1: 'Zdjęcie', p2: 'Oczekiwania', p3: 'Wynik', swap: 'Zmień zdjęcie', step2: 'Krok 2 z 3',
+      wish_h: 'Jaki ma być Twój uśmiech?', wish_l: 'Co chcesz zmienić?', optional: '— opcjonalnie',
+      wish_ph: 'Np. nie podoba mi się żółty odcień i szpara między przednimi zębami',
+      pills: 'Bielszy|Równe zęby|Naturalny|Hollywood|Bez szpar|Bez ukruszeń',
+      consent_c: 'Zgadzam się na przetworzenie zdjęcia w celu przygotowania wizualizacji.',
+      submit: 'Stwórz mój nowy uśmiech', e_consent: 'Potrzebna jest zgoda na przetworzenie zdjęcia.',
+      load_h: 'Zara tworzy Twój uśmiech', s1: 'Sprawdzamy jakość zdjęcia', s2: 'Oceniamy kolor, kształt i symetrię', s3: 'Dobieramy styl uśmiechu', s4: 'Generujemy wizualizację', s5: 'Liczymy koszt wg cennika',
+      m: 'Szukamy uśmiechu na zdjęciu…|Określamy odcień w skali VITA…|Sprawdzamy symetrię i linię uśmiechu…|Rysujemy Twój nowy uśmiech…|Liczymy koszt według cennika SoftDent…',
+      wait: 'Zwykle 30–90 sekund. Nie zamykaj strony.',
+      score_l: 'Ocena uśmiechu teraz', tick_l: 'Wymaga uwagi', tick_r: 'Idealnie', color: 'Kolor', align: 'Ustawienie', sym: 'Symetria',
+      before: 'Przed', after: 'Po · Zara AI', slider: 'Suwak porównania',
+      ba_ok: 'Przeciągnij suwak, aby porównać „przed” i „po”.',
+      ba_none: 'Tym razem nie udało się wygenerować wizualizacji, ale plan jest gotowy — lekarz pokaże możliwy efekt na konsultacji.',
+      plan_l: 'Plan', plan_h: 'Twoja droga do nowego uśmiechu', expected: 'Oczekiwany efekt: ',
+      cost_l: 'Orientacyjny koszt', pricelist: 'Pełny cennik SoftDent',
+      docs_l: 'Lekarze', docs_h: 'Kto się Tobą zajmie',
+      cta_h: 'Pokaż ten wynik lekarzowi', cta_p: 'Na konsultacji lekarz zweryfikuje plan, dobierze materiały i poda dokładny koszt.',
+      book: 'Umów konsultację', save: 'Zapisz zdjęcie „po”', again: 'Spróbuj z innym zdjęciem', retry: 'Spróbuj ponownie',
+      legal: 'Wizualizację wygenerowała sztuczna inteligencja i ma charakter poglądowy. Ostateczny plan leczenia i koszt ustala lekarz po badaniu.',
+      styles: 'HOLLYWOOD:Styl Hollywood|NATURAL:Styl naturalny|CORPORATE:Styl biznesowy|YOUTHFUL:Styl młodzieżowy',
+      levels: 'perfect:Idealnie|excellent:Doskonale|good:Dobrze|fair:Umiarkowanie|poor:Słabo',
+      your_design: 'Twój projekt uśmiechu', your_plan: 'Twój spersonalizowany plan uśmiechu',
+      n_photo: 'Potrzebne inne zdjęcie', n_photo_t: 'Nie widzimy uśmiechu na zdjęciu', n_photo_p: 'Zrób zdjęcie twarzy na wprost, z szerokim uśmiechem, przy dziennym świetle.',
+      n_err: 'Błąd techniczny', n_err_t: 'Nie udało się uzyskać wyniku', n_err_p: 'Spróbuj ponownie za chwilę albo zadzwoń — lekarz doradzi indywidualnie.',
+      n_slow: 'Serwer odpowiada zbyt długo. Spróbuj ponownie albo zadzwoń do nas.',
+      e_big: 'Plik jest za duży (maks. 25 MB).', e_open: 'Nie udało się otworzyć zdjęcia. Spróbuj JPG lub PNG.',
+      cancel: 'Anuluj', flip: 'Obróć', cam_tip: 'Uśmiechnij się tak, aby było widać zęby', file_name: 'moj-nowy-usmiech.jpg', wish_default: 'Chcę piękny uśmiech'
+    },
+    en: {
+      doc_title: 'Zara — AI smile design · SoftDent',
+      restart: 'Start over', eyebrow: 'Zara · smile design',
+      h1: 'See your<br><em>new smile</em> before your visit',
+      lede: 'Take a photo of your smile — Zara shows how it could look after treatment, prepares a plan and estimates the cost from the SoftDent price list.',
+      cam_t: 'Take a photo', cam_s: 'Phone camera', file_t: 'From gallery', file_s: 'Existing photo',
+      shield: 'Free and without obligation. The final plan is agreed with your dentist at the consultation.',
+      g1n: '01 / DESIGN', g1h: 'Your new smile', g1p: 'AI visualisation: colour, shape and symmetry after treatment.',
+      g2n: '02 / PLAN', g2h: 'What it takes', g2p: 'Procedures and steps chosen for your smile.',
+      g3n: '03 / COST', g3h: 'What it costs', g3p: 'Unit prices from the current SoftDent price list.',
+      fine: '<b>This is a preliminary visualisation.</b> It does not replace a visit — the final plan is made after an examination.',
+      p1: 'Photo', p2: 'Wishes', p3: 'Result', swap: 'Change photo', step2: 'Step 2 of 3',
+      wish_h: 'What should your smile look like?', wish_l: 'What would you like to change?', optional: '— optional',
+      wish_ph: 'E.g. I don\'t like the yellow shade and the gap between my front teeth',
+      pills: 'Whiter|Straight teeth|Natural|Hollywood|No gaps|No chips',
+      consent_c: 'I agree to my photo being processed to create the visualisation.',
+      submit: 'Create my new smile', e_consent: 'Consent to process the photo is required.',
+      load_h: 'Zara is creating your smile', s1: 'Checking photo quality', s2: 'Assessing colour, shape and symmetry', s3: 'Choosing the smile style', s4: 'Generating the visualisation', s5: 'Pricing from the list',
+      m: 'Finding the smile in your photo…|Matching the VITA shade…|Checking symmetry and smile line…|Drawing your new smile…|Pricing from the SoftDent list…',
+      wait: 'Usually 30–90 seconds. Please keep this page open.',
+      score_l: 'Smile score today', tick_l: 'Needs attention', tick_r: 'Ideal', color: 'Colour', align: 'Alignment', sym: 'Symmetry',
+      before: 'Before', after: 'After · Zara AI', slider: 'Comparison slider',
+      ba_ok: 'Drag the slider to compare “before” and “after”.',
+      ba_none: 'The visualisation could not be generated this time, but your plan is ready — the dentist will show the possible result at the consultation.',
+      plan_l: 'Plan', plan_h: 'Your path to a new smile', expected: 'Expected result: ',
+      cost_l: 'Indicative cost', pricelist: 'Full SoftDent price list',
+      docs_l: 'Doctors', docs_h: 'Who will look after you',
+      cta_h: 'Show this result to a dentist', cta_p: 'At the consultation the dentist checks the plan, selects materials and gives the exact cost.',
+      book: 'Book a consultation', save: 'Save the “after” photo', again: 'Try another photo', retry: 'Try again',
+      legal: 'This visualisation was generated by artificial intelligence and is indicative only. The final treatment plan and cost are set by a dentist after an examination.',
+      styles: 'HOLLYWOOD:Hollywood style|NATURAL:Natural style|CORPORATE:Business style|YOUTHFUL:Youthful style',
+      levels: 'perfect:Perfect|excellent:Excellent|good:Good|fair:Fair|poor:Poor',
+      your_design: 'Your smile design', your_plan: 'Your personal smile plan',
+      n_photo: 'Another photo needed', n_photo_t: 'We can\'t see a smile in the photo', n_photo_p: 'Take a front-facing photo with a wide smile in daylight.',
+      n_err: 'Technical error', n_err_t: 'We couldn\'t get a result', n_err_p: 'Please try again in a minute or give us a call — a dentist will advise you.',
+      n_slow: 'The server is taking too long. Try again or give us a call.',
+      e_big: 'File too large (max 25 MB).', e_open: 'Could not open the photo. Try JPG or PNG.',
+      cancel: 'Cancel', flip: 'Flip', cam_tip: 'Smile so that your teeth are visible', file_name: 'my-new-smile.jpg', wish_default: 'I want a beautiful smile'
+    }
+  });
+  SDI.start();
+
+  var $ = function (id) { return document.getElementById(id); };
+  var t = SDI.t, photo = '', last = null;
+  var map = function (k) { var o = {}; t(k).split('|').forEach(function (p) { var i = p.indexOf(':'); o[p.slice(0, i)] = p.slice(i + 1); }); return o; };
+  var tr = function (k, v) { var m = map(k); return m[String(v || '').toUpperCase()] || m[String(v || '').toLowerCase()] || v || '–'; };
+
+  function pills() {
+    var on = [].map.call(document.querySelectorAll('#pills .pill[aria-pressed="true"]'), function (p) { return +p.dataset.n; });
+    $('pills').innerHTML = t('pills').split('|').map(function (s, i) {
+      return '<button type="button" class="pill" data-n="' + i + '" aria-pressed="' + (on.indexOf(i) > -1) + '">' + s + '</button>';
+    }).join('');
+  }
+  function links() {
+    $('r-price-link').href = C.prices; $('book-link').href = C.booking;
+    ['call-link', 'call-link-2'].forEach(function (id) { $(id).href = C.phoneHref; $(id).textContent = C.phone; });
+  }
+  pills(); links();
+  SDI.onLang(function () { pills(); links(); if (last) render(last, true); });
+  $('pills').addEventListener('click', function (e) {
+    var p = e.target.closest('.pill');
+    if (p) p.setAttribute('aria-pressed', p.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+  });
+
+  var STEPS = ['s-start', 's-form', 's-load', 's-result', 's-notice'];
+  function go(id) {
+    STEPS.forEach(function (s) { $(s).classList.toggle('on', s === id); });
+    $('restart').classList.toggle('on', id !== 's-start');
+    $('prog').classList.toggle('hide', id !== 's-form' && id !== 's-load');
+    var a = id === 's-form' ? 2 : 3;
+    [1, 2, 3].forEach(function (n) {
+      var pn = $('pn' + n);
+      if (n < a) pn.dataset.s = 'done'; else if (n === a) pn.dataset.s = 'on'; else delete pn.dataset.s;
+      pn.querySelector('.pd').textContent = n < a ? '✓' : n;
+    });
+    $('pl1').classList.toggle('done', a > 1); $('pl2').classList.toggle('done', a > 2);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ── Photo ── */
+  async function compress(blob) {
+    var src;
+    try { src = await createImageBitmap(blob, { imageOrientation: 'from-image' }); }
+    catch (e) { src = await new Promise(function (res, rej) { var im = new Image(); im.onload = function () { res(im); }; im.onerror = rej; im.src = URL.createObjectURL(blob); }); }
+    var k = Math.min(1, 1280 / Math.max(src.width, src.height));
+    var c = document.createElement('canvas'); c.width = Math.round(src.width * k); c.height = Math.round(src.height * k);
+    c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
+    return c.toDataURL('image/jpeg', 0.86);
+  }
+  async function usePhoto(file) {
+    $('err-start').textContent = '';
+    if (!file) return;
+    if (file.size > 25 * 1024 * 1024) { $('err-start').textContent = t('e_big'); return; }
+    try { photo = await compress(file); } catch (e) { $('err-start').textContent = t('e_open'); return; }
+    $('form-img').src = photo; go('s-form');
+  }
+  $('btn-file').addEventListener('click', function () { $('file-in').click(); });
+  $('btn-swap').addEventListener('click', function () { $('file-in').click(); });
+  $('file-in').addEventListener('change', function (e) { usePhoto(e.target.files[0]); e.target.value = ''; });
+  $('file-cam').addEventListener('change', function (e) { usePhoto(e.target.files[0]); e.target.value = ''; });
+
+  var stream = null, facing = 'user';
+  async function openCam() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return $('file-cam').click();
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: facing, width: { ideal: 1920 }, height: { ideal: 1920 } }, audio: false });
+      $('cam-video').srcObject = stream; $('cam-video').style.transform = facing === 'user' ? 'scaleX(-1)' : 'none';
+      $('cam').classList.add('on'); document.body.style.overflow = 'hidden';
+    } catch (e) { $('file-cam').click(); }
+  }
+  function closeCam() { if (stream) stream.getTracks().forEach(function (x) { x.stop(); }); stream = null; $('cam').classList.remove('on'); document.body.style.overflow = ''; }
+  $('btn-cam').addEventListener('click', openCam);
+  $('cam-close').addEventListener('click', closeCam);
+  $('cam-flip').addEventListener('click', function () { facing = facing === 'user' ? 'environment' : 'user'; closeCam(); openCam(); });
+  $('cam-shot').addEventListener('click', function () {
+    var v = $('cam-video'); if (!v.videoWidth) return;
+    var c = document.createElement('canvas'); c.width = v.videoWidth; c.height = v.videoHeight;
+    var x = c.getContext('2d'); if (facing === 'user') { x.translate(c.width, 0); x.scale(-1, 1); }
+    x.drawImage(v, 0, 0); closeCam(); c.toBlob(function (b) { usePhoto(b); }, 'image/jpeg', 0.92);
+  });
+
+  /* ── Loading ── */
+  var tS, tR, tM;
+  function startLoad() {
+    $('load-img').src = photo;
+    var items = [].slice.call($('load-steps').children), i = 0, p = 0, m = 0, msgs = t('m').split('|');
+    items.forEach(function (li) { delete li.dataset.s; }); items[0].dataset.s = 'now';
+    var dur = [4000, 8000, 7000, 25000];
+    var next = function () { if (i >= items.length - 1) return; items[i].dataset.s = 'done'; items[++i].dataset.s = 'now'; tS = setTimeout(next, dur[i] || 20000); };
+    tS = setTimeout(next, dur[0]);
+    $('rail').style.width = '0';
+    tR = setInterval(function () { p += (93 - p) * 0.04; $('rail').style.width = p.toFixed(1) + '%'; }, 700);
+    $('load-msg').textContent = msgs[0];
+    tM = setInterval(function () {
+      m = (m + 1) % msgs.length; $('load-msg').classList.add('fade');
+      setTimeout(function () { $('load-msg').textContent = msgs[m]; $('load-msg').classList.remove('fade'); }, 220);
+    }, 6000);
+  }
+  function stopLoad() { clearTimeout(tS); clearInterval(tR); clearInterval(tM); $('rail').style.width = '100%'; [].forEach.call($('load-steps').children, function (li) { li.dataset.s = 'done'; }); }
+
+  /* ── Submit ── */
+  $('zara-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    $('err-form').textContent = '';
+    if (!$('consent').checked) { $('err-form').textContent = t('e_consent'); return; }
+    var wishes = [].map.call(document.querySelectorAll('#pills .pill[aria-pressed="true"]'), function (p) { return p.textContent.trim(); });
+    var text = [wishes.join(', '), $('wish').value.trim()].filter(Boolean).join('. ') || t('wish_default');
+    $('submit').disabled = true; go('s-load'); startLoad();
+    try {
+      var data = SDI.live() ? await SDI.api('sd-zara', { image: photo, message: text, lang: SDI.lang }, 180000) : await demo();
+      stopLoad(); last = data; render(data);
+    } catch (ex) {
+      stopLoad(); console.error('[Zara]', ex);
+      notice(t('n_err'), t('n_err_t'), ex.name === 'AbortError' ? t('n_slow') : t('n_err_p'));
+    } finally { $('submit').disabled = false; }
+  });
+
+  function setText(id, v) { $(id).textContent = v == null ? '' : String(v); }
+  function fill(id, arr, make) {
+    var box = $(id); box.replaceChildren();
+    (Array.isArray(arr) ? arr : []).filter(Boolean).forEach(function (x) { box.appendChild(make(String(x))); });
+    box.classList.toggle('hide', !box.children.length);
+  }
+  function notice(e, ti, tx) { setText('n-eyebrow', e); setText('n-title', ti); setText('n-text', tx); go('s-notice'); }
+
+  function render(data, quiet) {
+    var d = data && data.design;
+    if (!data || data.success === false || !d) return notice(t('n_err'), t('n_err_t'), t('n_err_p'));
+    var pv = d.patient_view || {}, a = d.current_smile_assessment || {}, dv = d.doctor_view || {};
+    if (d.image_validation && d.image_validation.is_valid === false) return notice(t('n_photo'), pv.title || t('n_photo_t'), pv.summary || t('n_photo_p'));
+
+    setText('r-style', d.design_style ? tr('styles', d.design_style) : t('your_design'));
+    setText('r-title', pv.title || t('your_plan'));
+    setText('r-summary', pv.summary);
+    var score = Math.max(0, Math.min(10, Number(a.overall_score) || 0));
+    $('r-scale').classList.toggle('hide', !score);
+    setText('r-score', score);
+    if (!quiet) { $('r-pin').style.left = '0%'; setTimeout(function () { $('r-pin').style.left = (score * 10) + '%'; }, 80); }
+    $('r-stats').classList.toggle('hide', !a.color_grade && !a.alignment && !a.symmetry);
+    setText('r-color', a.color_grade || '–'); setText('r-align', tr('levels', a.alignment)); setText('r-sym', tr('levels', a.symmetry));
+
+    $('img-before').src = photo;
+    var gen = data.generated_image_base64;
+    if (gen) {
+      var mime = data.generated_image_mime || (gen.indexOf('/9j/') === 0 ? 'image/jpeg' : 'image/png');
+      $('img-after').src = 'data:' + mime + ';base64,' + gen;
+      $('ba').classList.remove('single'); setText('ba-note', t('ba_ok')); if (!quiet) setSplit(50);
+    } else {
+      $('img-after').removeAttribute('src'); $('ba').classList.add('single'); setText('ba-note', t('ba_none'));
+    }
+    $('dl-btn').classList.toggle('hide', !gen);
+
+    fill('r-steps', pv.transformation_steps, function (s) { var li = document.createElement('li'); li.textContent = s; return li; });
+    fill('r-services', pv.recommended_services, function (s) { var el = document.createElement('span'); el.textContent = s; return el; });
+    $('r-expected').replaceChildren();
+    if (pv.expected_result) { var b = document.createElement('b'); b.textContent = t('expected'); $('r-expected').append(b, document.createTextNode(pv.expected_result)); }
+    $('r-expected').classList.toggle('hide', !pv.expected_result);
+    var items = (Array.isArray(pv.price_items) ? pv.price_items : []).filter(function (i) { return i && i.service && i.price; }).slice(0, 4);
+    $('r-items').replaceChildren.apply($('r-items'), items.map(function (i) {
+      var li = document.createElement('li'), s = document.createElement('span'), bb = document.createElement('b');
+      s.textContent = i.service; bb.textContent = SDI.fixPrice(i.price);
+      if (i.unit) { var sm = document.createElement('small'); sm.textContent = ' / ' + i.unit; bb.appendChild(sm); }
+      li.append(s, bb); return li;
+    }));
+    $('r-items').classList.toggle('hide', !items.length);
+    setText('r-price', SDI.fixPrice(pv.estimated_price_range));
+    $('r-price').classList.toggle('hide', items.length > 0);
+    setText('r-note', pv.price_total_note); $('r-note').classList.toggle('hide', !pv.price_total_note);
+    $('r-cost').classList.toggle('hide', !pv.estimated_price_range && !items.length);
+
+    fill('r-docs', dv.recommended_specialists, function (s) {
+      var el = document.createElement('span'); el.className = 'doc';
+      var i = document.createElement('i'); i.textContent = SDI.initials(s);
+      el.append(i, document.createTextNode(s)); return el;
+    });
+    $('r-docs-card').classList.toggle('hide', !$('r-docs').children.length);
+    if (!quiet) go('s-result');
+  }
+
+  /* ── Before / after slider ── */
+  var ba = $('ba'), drag = false;
+  function setSplit(pct) {
+    pct = Math.max(0, Math.min(100, pct));
+    $('img-before').style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+    $('ba-line').style.left = pct + '%'; $('ba-knob').style.left = pct + '%';
+    $('ba-knob').setAttribute('aria-valuenow', Math.round(pct));
+  }
+  var move = function (e) { var r = ba.getBoundingClientRect(); setSplit(((e.clientX - r.left) / r.width) * 100); };
+  ba.addEventListener('pointerdown', function (e) { if (ba.classList.contains('single')) return; drag = true; ba.setPointerCapture(e.pointerId); move(e); });
+  ba.addEventListener('pointermove', function (e) { if (drag) move(e); });
+  ['pointerup', 'pointercancel'].forEach(function (ev) { ba.addEventListener(ev, function () { drag = false; }); });
+  $('ba-knob').addEventListener('keydown', function (e) {
+    var cur = Number($('ba-knob').getAttribute('aria-valuenow'));
+    if (e.key === 'ArrowLeft') { setSplit(cur - 5); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { setSplit(cur + 5); e.preventDefault(); }
+  });
+  $('dl-btn').addEventListener('click', function () { var a = document.createElement('a'); a.href = $('img-after').src; a.download = t('file_name'); a.click(); });
+
+  function restart() { photo = ''; last = null; $('form-img').removeAttribute('src'); $('consent').checked = false; $('wish').value = ''; go('s-start'); }
+  $('restart').addEventListener('click', restart);
+  document.querySelectorAll('[data-restart]').forEach(function (b) { b.addEventListener('click', restart); });
+
+  /* ── Built-in demo answer (no AI endpoint configured) ── */
+  async function demo() {
+    await new Promise(function (r) { setTimeout(r, 7000); });
+    var img = await new Promise(function (r) { var i = new Image(); i.onload = function () { r(i); }; i.src = photo; });
+    var c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+    var x = c.getContext('2d'); x.filter = 'brightness(1.1) saturate(1.08) contrast(1.04)'; x.drawImage(img, 0, 0);
+    var pl = SDI.lang === 'pl', P = SD.prices;
+    var o = function (k, i) { var c2 = P.filter(function (c3) { return c3.k === k; })[0].o[i]; return { service: SDI.L({ pl: c2.pl, en: c2.en }), price: SDI.priceOf(c2), unit: SDI.unitOf(c2.u) }; };
+    var items = [o('white', 0), o('hyg', 0), o('cons', 2)];
+    return {
+      success: true,
+      design: {
+        image_validation: { is_valid: true, quality: 'good' },
+        current_smile_assessment: { color_grade: 'A3', alignment: 'good', symmetry: 'fair', overall_score: 7 },
+        design_style: 'NATURAL',
+        patient_view: {
+          title: pl ? 'Twój naturalny, promienny uśmiech' : 'Your natural, radiant smile',
+          summary: pl ? 'Masz dobrą bazę: zęby są zdrowe, a linia uśmiechu równa. Higienizacja, wybielanie i bonding dwóch przednich zębów sprawią, że uśmiech będzie jaśniejszy i bardziej harmonijny.'
+                      : 'You have a great base: healthy teeth and an even smile line. Hygiene, whitening and bonding on two front teeth will make your smile brighter and more harmonious.',
+          recommended_services: pl ? ['Higienizacja', 'Wybielanie', 'Bonding'] : ['Hygiene', 'Whitening', 'Bonding'],
+          expected_result: pl ? 'uśmiech jaśniejszy o 3–4 odcienie, symetryczny, bez widocznych ukruszeń.' : 'a smile 3–4 shades brighter, symmetrical, without visible chips.',
+          estimated_price_range: items[0].price, price_items: items,
+          price_total_note: pl ? 'Całkowity koszt — po konsultacji i badaniu' : 'Total cost — after consultation and examination',
+          transformation_steps: pl ? ['Konsultacja i dokumentacja zdjęciowa', 'Higienizacja i wybielanie', 'Bonding przednich zębów'] : ['Consultation and photo documentation', 'Hygiene and whitening', 'Bonding of the front teeth']
+        },
+        doctor_view: { recommended_specialists: ['Alina Kuzma', 'dr n. med. Aleksandra Skalbani'], treatment_complexity: 'low', treatment_duration: pl ? '2–3 tygodnie' : '2–3 weeks' }
+      },
+      generated_image_base64: c.toDataURL('image/jpeg', 0.85).split(',')[1],
+      generated_image_mime: 'image/jpeg'
+    };
+  }
+})();
+</script>
+</body>
+</html>
