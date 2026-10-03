@@ -138,6 +138,7 @@
 
   <!-- 4 · Result -->
   <section class="step" id="s-result">
+    <p class="demo-note hide" id="demo-note" data-ih="demo_note"></p>
     <div class="dark rise">
       <span class="eyebrow"><span class="dot"></span><span id="r-style"></span></span>
       <div class="v-state" id="r-title"></div>
@@ -276,7 +277,9 @@
       n_err: 'Błąd techniczny', n_err_t: 'Nie udało się uzyskać wyniku', n_err_p: 'Spróbuj ponownie za chwilę albo zadzwoń — lekarz doradzi indywidualnie.',
       n_slow: 'Serwer odpowiada zbyt długo. Spróbuj ponownie albo zadzwoń do nas.',
       e_big: 'Plik jest za duży (maks. 25 MB).', e_open: 'Nie udało się otworzyć zdjęcia. Spróbuj JPG lub PNG.',
-      cancel: 'Anuluj', flip: 'Obróć', cam_tip: 'Uśmiechnij się tak, aby było widać zęby', file_name: 'moj-nowy-usmiech.jpg', wish_default: 'Chcę piękny uśmiech'
+      cancel: 'Anuluj', flip: 'Obróć', cam_tip: 'Uśmiechnij się tak, aby było widać zęby', file_name: 'moj-nowy-usmiech.jpg', wish_default: 'Chcę piękny uśmiech',
+      demo_note: '<b>Tryb demo.</b> To przykładowy wynik — zdjęcie nie zostało przeanalizowane, a wizualizacja „po” nie jest generowana. W wersji na żywo AI tworzy ją dla każdego zdjęcia.',
+      ba_demo: 'W trybie demo wizualizacja AI nie jest generowana.'
     },
     en: {
       doc_title: 'Zara — AI smile design · SoftDent',
@@ -315,7 +318,9 @@
       n_err: 'Technical error', n_err_t: 'We couldn\'t get a result', n_err_p: 'Please try again in a minute or give us a call — a dentist will advise you.',
       n_slow: 'The server is taking too long. Try again or give us a call.',
       e_big: 'File too large (max 25 MB).', e_open: 'Could not open the photo. Try JPG or PNG.',
-      cancel: 'Cancel', flip: 'Flip', cam_tip: 'Smile so that your teeth are visible', file_name: 'my-new-smile.jpg', wish_default: 'I want a beautiful smile'
+      cancel: 'Cancel', flip: 'Flip', cam_tip: 'Smile so that your teeth are visible', file_name: 'my-new-smile.jpg', wish_default: 'I want a beautiful smile',
+      demo_note: '<b>Demo mode.</b> This is a sample result — the photo was not analysed and no “after” visualisation is generated. In the live version AI creates one for every photo.',
+      ba_demo: 'In demo mode the AI visualisation is not generated.'
     }
   });
   SDI.start();
@@ -428,7 +433,7 @@
     $('submit').disabled = true; go('s-load'); startLoad();
     try {
       var data = SDI.live() ? await SDI.api('sd-zara', { image: photo, message: text, lang: SDI.lang }, 180000) : await demo();
-      stopLoad(); last = data; render(data);
+      stopLoad(); last = data; $('demo-note').classList.toggle('hide', !data._demo); render(data);
     } catch (ex) {
       stopLoad(); console.error('[Zara]', ex);
       notice(t('n_err'), t('n_err_t'), ex.name === 'AbortError' ? t('n_slow') : t('n_err_p'));
@@ -466,7 +471,7 @@
       $('img-after').src = 'data:' + mime + ';base64,' + gen;
       $('ba').classList.remove('single'); setText('ba-note', t('ba_ok')); if (!quiet) setSplit(50);
     } else {
-      $('img-after').removeAttribute('src'); $('ba').classList.add('single'); setText('ba-note', t('ba_none'));
+      $('img-after').removeAttribute('src'); $('ba').classList.add('single'); setText('ba-note', t(data._demo ? 'ba_demo' : 'ba_none'));
     }
     $('dl-btn').classList.toggle('hide', !gen);
 
@@ -523,9 +528,6 @@
   /* ── Built-in demo answer (no AI endpoint configured) ── */
   async function demo() {
     await new Promise(function (r) { setTimeout(r, 7000); });
-    var img = await new Promise(function (r) { var i = new Image(); i.onload = function () { r(i); }; i.src = photo; });
-    var c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
-    var x = c.getContext('2d'); x.filter = 'brightness(1.1) saturate(1.08) contrast(1.04)'; x.drawImage(img, 0, 0);
     var pl = SDI.lang === 'pl', P = SD.prices;
     var o = function (k, i) { var c2 = P.filter(function (c3) { return c3.k === k; })[0].o[i]; return { service: SDI.L({ pl: c2.pl, en: c2.en }), price: SDI.priceOf(c2), unit: SDI.unitOf(c2.u) }; };
     var items = [o('white', 0), o('hyg', 0), o('cons', 2)];
@@ -547,7 +549,8 @@
         },
         doctor_view: { recommended_specialists: ['Alina Kuzma', 'dr n. med. Aleksandra Skalbani'], treatment_complexity: 'low', treatment_duration: pl ? '2–3 tygodnie' : '2–3 weeks' }
       },
-      generated_image_base64: c.toDataURL('image/jpeg', 0.85).split(',')[1],
+      _demo: true,
+      generated_image_base64: null,
       generated_image_mime: 'image/jpeg'
     };
   }

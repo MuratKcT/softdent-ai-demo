@@ -132,6 +132,7 @@
 
   <!-- 4 · Result -->
   <section id="step-result" class="step">
+    <p class="demo-note hide" id="demo-note" data-ih="demo_note"></p>
     <nav class="prog">
       <span class="pn" data-s="done"><span class="pd">✓</span><span data-i="p1"></span></span><span class="pl done"></span>
       <span class="pn" data-s="done"><span class="pd">✓</span><span data-i="p2"></span></span><span class="pl done"></span>
@@ -262,7 +263,8 @@
       back: '← Wróć', flip: 'Obróć', cam_tip: 'Uśmiechnij się tak, aby było widać zęby',
       e_big: 'Zdjęcie jest za duże. Spróbuj innego.', e_open: 'Nie udało się otworzyć zdjęcia. Spróbuj JPG lub PNG.',
       e_pick: 'Najpierw wybierz zdjęcie.', e_fail: 'Nie udało się przetworzyć zdjęcia. Spróbuj ponownie lub zadzwoń do nas.',
-      general: 'Ogólna konsultacja'
+      general: 'Ogólna konsultacja',
+      demo_note: '<b>Tryb demo.</b> To przykładowy wynik — Twoje zdjęcie nie zostało przeanalizowane. W wersji na żywo AI ocenia każde zdjęcie indywidualnie.'
     },
     en: {
       doc_title: 'Umi — photo pre-assessment · SoftDent',
@@ -298,7 +300,8 @@
       back: '← Back', flip: 'Flip', cam_tip: 'Smile so that your teeth are visible',
       e_big: 'The photo is too large. Try another one.', e_open: 'Could not open the photo. Try JPG or PNG.',
       e_pick: 'Please choose a photo first.', e_fail: 'Could not process the photo. Try again or give us a call.',
-      general: 'General check-up'
+      general: 'General check-up',
+      demo_note: '<b>Demo mode.</b> This is a sample result — your photo was not analysed. In the live version AI assesses every photo individually.'
     }
   });
   SDI.start();
@@ -411,6 +414,7 @@
       if (!d || (!d.analysis && !d.patient_view)) throw new Error('bad payload');
       stopLoad();
       last = d.analysis || d;
+      $('demo-note').classList.toggle('hide', SDI.live());
       render(last); go('result');
     } catch (e) {
       stopLoad(); console.error('[Umi]', e); go('confirm'); err('err-analyze', t('e_fail'));

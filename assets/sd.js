@@ -60,9 +60,19 @@
     apply();
   }
 
-  /* ── API ── */
+  /* ── API ──
+     ?api=<base url> switches this browser to live mode (stored locally, removed from the address bar);
+     ?api=off switches it back to demo mode. The endpoint itself is never part of the published code. */
+  (function () {
+    var a = qs.get('api');
+    if (a === null) return;
+    try {
+      if (a === 'off') localStorage.removeItem('sd_api');
+      else if (/^https:\/\/[^\s]+$/.test(a)) localStorage.setItem('sd_api', a);
+    } catch (e) {}
+    var u = new URL(location.href); u.searchParams.delete('api'); history.replaceState(null, '', u);
+  })();
   function apiBase() {
-    if (qs.get('api') === 'off') return '';
     var b = '';
     try { b = localStorage.getItem('sd_api') || ''; } catch (e) {}
     return (b || window.SD_API_BASE || '').replace(/\/+$/, '');
