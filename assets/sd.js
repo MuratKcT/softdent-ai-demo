@@ -21,6 +21,7 @@
       f_closed: 'nieczynne',
       f_legal: 'Prezentacja demonstracyjna przygotowana dla SoftDent. Nie jest oficjalną stroną kliniki. Dane kliniki pochodzą z softdent.com.pl.',
       mode_live: 'Na żywo · AI', mode_demo: 'Tryb demo',
+      demo_bar: 'Wersja demonstracyjna — to nie jest oficjalna strona SoftDent.',
       menu: 'Menu'
     },
     en: {
@@ -30,6 +31,7 @@
       f_closed: 'closed',
       f_legal: 'Demonstration prepared for SoftDent. Not the official clinic website. Clinic data taken from softdent.com.pl.',
       mode_live: 'Live · AI', mode_demo: 'Demo mode',
+      demo_bar: 'Demo version — this is not the official SoftDent website.',
       menu: 'Menu'
     }
   };
@@ -106,6 +108,15 @@
   var I = {
     burger: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'
   };
+  function renderDemoBar() {
+    if (document.getElementById('sd-demo-bar')) return;
+    var d = document.createElement('div');
+    d.id = 'sd-demo-bar';
+    d.className = 'sd-demo-bar';
+    d.setAttribute('role', 'note');
+    d.innerHTML = '<span data-i="demo_bar"></span>';
+    document.body.insertBefore(d, document.body.firstChild);
+  }
   function renderHead() {
     var h = document.getElementById('sd-head');
     if (!h) return;
@@ -155,6 +166,6 @@
     money: money, priceOf: priceOf, fixPrice: fixPrice, unitOf: unitOf,
     modeBadge: modeBadge,
     initials: function (s) { return String(s).replace(/^(dr n\. med\.|lek\. dent\.)\s*/i, '').split(/\s+/).filter(Boolean).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase(); },
-    start: function () { renderHead(); apply(); document.querySelectorAll('[data-mode]').forEach(modeBadge); }
+    start: function () { renderDemoBar(); renderHead(); apply(); document.querySelectorAll('[data-mode]').forEach(modeBadge); }
   };
 })();
